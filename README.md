@@ -1,5 +1,5 @@
 # PDM-Blood-donation-website
-A mini project for subject PDM, about blood donation database and blood supply management from color banks to hospitals or medical facilities.  
+A mini project for subject PDM, about blood donation database and blood supply management from blood banks to hospitals or medical facilities.  
 
 Contributors to complete and update the product:
 - Trần Thị Huỳnh Như	-	ITITIU19174 
