@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/styleall.css" />
-
+    <link rel="stylesheet" href="./css/bloodbank.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Add this-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
@@ -17,11 +16,10 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--Add this-->
 
-
+    <link href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <title>Bloodlife</title>
 
 </head>
-
 <body>
     <div class="navigation">
         <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
@@ -41,7 +39,7 @@
             </ul>
         </div>
     </div>
-    <header class="header">
+    <!-- <header class="header">
         <div class="header__logo-box">
             <img src="./img/logo-heart.png" class="logo" alt="logo">
         </div>
@@ -53,403 +51,332 @@
             </h3>
             <a href="#" class="btn btn--white btn--animated"> Contact us </a>
         </div>
-    </header>
+    </header> -->
     <main>
-        
         <section class="section-about">
             <div class="container">
+                <div class="about-details">
+                    <h3 class="heading-third">Welcome to the blood bank?</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-blood">
+            <div class="container">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="form__title">
+                        <h2 class="form__heading"><span>Form</span> Receive Blood</h2>
+                        <p class="form__subheading">
+                            Let's save souls from the scythe of death
+                        </p>
+                    </div>
+                </div> <!-- end .row  -->
+    
+            </div>
+        </section>
+
+        <section class="form-receiveblood">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                        <div class="about-details">
-                            <h3 class="heading-secondary">Who We are?</h3>
-                                <div> 
-                                    <span class="heading-separator"></span>
-                                </div>
-                            <p class="about-details-first">
-                                Blood Buddies is for public donation center with blood donation members in the changing health care system.
-                            </p>
-                            <ul class="about-details-list">
-                                <li class="about-details-list--1">Specialist blood donors and clinical supervision.</li>   
-                                
-                                <li>Increasing communication with our members.</li>
+                    <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9">
+                        <div class="form__receive">
+                            <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+                            <fieldset>
                             
-                                <li>High quality assessment, diagnosis and treatment.</li>
+                            <!-- Form Name -->
+                            <legend>Contact Us Today!</legend>
+                            
+                            <!-- Text input-->
+                            
+                            <div class="form-group">
+                            <label class="col-md-4 control-label">First Name</label>  
+                            <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input  name="first_name" placeholder="First Name" class="form-control"  type="text" required>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                            
+                            <div class="form-group">
+                            <label class="col-md-4 control-label" >Last Name</label> 
+                                <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="last_name" placeholder="Last Name" class="form-control"  type="text" required>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                                <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail</label>  
+                                <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input name="email" placeholder="E-Mail Address" class="form-control"  type="text" required>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                            <!-- Text input-->
                                 
-                                <li>Examine critically to ensure alignment.</li>
+                            <div class="form-group">
+                            <label class="col-md-4 control-label">Phone #</label>  
+                                <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input name="phone" placeholder="(845)555-1212" class="form-control" type="text" required>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Text input-->
                                 
-                                <li>The extra care of a multi-disciplinary team.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
-                        <div class="composition">
-                            <img
-                            srcset="img/humangroups1.png 1920w, img/humangroups1-small.png 600w"
-                            sizes="(max-width: 900px) 13vw, (max-width: 600px) 20vw, 270px"
-                            src="./img/gallery_5.jpg" alt="photo1"
-                            class="composition__photo composition__photo--p1">
-                            <img src="./img/gallery_6.jpg" alt="photo2"
-                                class="composition__photo composition__photo--p2">
-                            <img src="./img/gallery_3.jpg" alt="photo3"
-                                class="composition__photo composition__photo--p3">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="parallax__skill">
-         <section class="section-skills">
-             <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="skill-box">
-                            <i class=" skill-box__icon fas fa-globe-americas"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">global skill</h3>
-                            <div class="skill-box__text">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit, Neque, quas
-                                doloribus corporis debitis soluta atque.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="skill-box">
-                            <i class=" skill-box__icon fas fa-book-open"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">google's knowledge</h3>
-                            <div class="skill-box__text">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit, Neque, quas
-                                doloribus corporis debitis soluta atque.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="skill-box">
-                            <i class=" skill-box__icon fas fa-users"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">leader of your life</h3>
-                            <div class="skill-box__text">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit, Neque, quas
-                                doloribus corporis debitis soluta atque.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="skill-box">
-                            <i class=" skill-box__icon fas fa-hourglass-half"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">saving your time</h3>
-                            <div class="skill-box__text">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit, Neque, quas
-                                doloribus corporis debitis soluta atque.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        </div>
-        <section class="section-sales">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                    <div class="img-sales">
-                        <img src="./img/img-sales.png" alt="photo-sales" class="img-sales__photo img-sales__photo--1">
-                    </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                        <h3 class="heading-tertiary u-margin-bottom-small">FEATURE LIST</h3>
-                        <h3 class="heading-tertiary u-margin-bottom-big">Performance Graph </h3>
-                        <h3 class="heading-tertiary u-margin-bottom-big-pu">UX DesignT </h3>
-                    
-                    <div class="section-sales-list--1">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                    <div class="img-sales--bg">
-                                        <img src="./img/logo-sales-1.png" alt="photo-sales" class="img-sales__photo--2">
-                                    </div>
-                                </div>
-                                <div class="col-8 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                                    <h3>Get a Free App Trial</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                            <div class="form-group">
+                            <label class="col-md-4 control-label">Address</label>  
+                                <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="address" placeholder="Address" class="form-control" type="text" required>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="section-sales-list--2">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                    <div class="img-sales--bg">
-                                        <img src="./img/logo-sales-2.png" alt="photo-sales" class="img-sales__photo--3">
-                                    </div>
-                                </div>
-                                <div class="col-8 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                                    <h3>Get a Free App Trial</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                            </div>
+                            
+                            <!-- Text input-->
+                            
+                            <div class="form-group">
+                            <label class="col-md-4 control-label">City</label>  
+                                <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="city" placeholder="city" class="form-control"  type="text" required>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section-number">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                        <div class="section-number--details">
-                            <h3><span class="counter">500</span></h3>
-                            <h4>Faster More then Older</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                        <div class="section-number--details">
-                            <h3><span class="counter">95</span>%</h3>
-                            <h4>Faster More then Older</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                        <div class="section-number--details">
-                            <h3><span class="counter">5</span></h3>
-                            <h4>Faster More then Older</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-<br>
-        <div class="parallax__slide">
-        <section class="section-slide">
-            <div class="container">
-                <div class="row" >
-                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                        <div class="section-slide--details">
-                            <h3 class="heading-secondary">OUR CAMPAIGNS</h3>
-                            <div>
-                                <span class="heading-separator"></span>
                             </div>
-                            <div class="event-exceprt"> All over the world we have arranged total sixty thousands donation campaign and visit thousands of other venues on various occasions.</div>
-                            <a href="#" class="btn btn--orange btn--animated">See our courses</a>
+                            
+                            <!-- Select Basic -->
+                            
+                            <div class="form-group"> 
+                            <label class="col-md-4 control-label">State</label>
+                                <div class="col-md-4 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select name="state" class="form-control selectpicker" >
+                                <option value=" " >Please select your state</option>
+                                <option>Alabama</option>
+                                <option>Alaska</option>
+                                <option >Arizona</option>
+                                <option >Arkansas</option>
+                                <option >California</option>
+                                <option >Colorado</option>
+                                <option >Connecticut</option>
+                                <option >Delaware</option>
+                                <option >District of Columbia</option>
+                                <option> Florida</option>
+                                <option >Georgia</option>
+                                <option >Hawaii</option>
+                                <option >daho</option>
+                                <option >Illinois</option>
+                                <option >Indiana</option>
+                                <option >Iowa</option>
+                                <option> Kansas</option>
+                                <option >Kentucky</option>
+                                <option >Louisiana</option>
+                                <option>Maine</option>
+                                <option >Maryland</option>
+                                <option> Mass</option>
+                                <option >Michigan</option>
+                                <option >Minnesota</option>
+                                <option>Mississippi</option>
+                                <option>Missouri</option>
+                                <option>Montana</option>
+                                <option>Nebraska</option>
+                                <option>Nevada</option>
+                                <option>New Hampshire</option>
+                                <option>New Jersey</option>
+                                <option>New Mexico</option>
+                                <option>New York</option>
+                                <option>North Carolina</option>
+                                <option>North Dakota</option>
+                                <option>Ohio</option>
+                                <option>Oklahoma</option>
+                                <option>Oregon</option>
+                                <option>Pennsylvania</option>
+                                <option>Rhode Island</option>
+                                <option>South Carolina</option>
+                                <option>South Dakota</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option> Uttah</option>
+                                <option>Vermont</option>
+                                <option>Virginia</option>
+                                <option >Washington</option>
+                                <option >West Virginia</option>
+                                <option>Wisconsin</option>
+                                <option >Wyoming</option>
+                                </select>
+                            </div>
+                            </div>
+                            </div>
 
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
-                        <div class="slideshow-container">
-                            <!-- Full-width images with number and caption text -->
-                            <div class="mySlides fade">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                    <img src="./img/event_4.jpg">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                            <div class="event-info"> 
-                                                <a class="event-date" href="#"><i class="fa-solid fa-calendar-days"></i> 24 February, 2018</a>
-                                                <h4>
-                                                    <a class="event-open"href="#">Opening Donation Day</a>
-                                                </h4>
-                                                <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                                <div class="event-timewhere">
-                                                    <a class="event-time" href="#"><i class="fa-solid fa-clock"></i> 10.00 - 3.00</a>
-                                                    <a class="event-where"href="#"><i class="fa-solid fa-location-dot"></i></i> California, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="mySlides fade">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                    <img src="./img/event_4.jpg">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                            <div class="event-info"> 
-                                                <a class="event-date" href="#"><i class="fa-solid fa-calendar-days"></i> 24 February, 2018</a>
-                                                <h4>
-                                                    <a class="event-open"href="#">Opening Donation Day</a>
-                                                </h4>
-                                                <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                                <div class="event-timewhere">
-                                                    <a class="event-time" href="#"><i class="fa-solid fa-clock"></i> 10.00 - 3.00</a>
-                                                    <a class="event-where"href="#"><i class="fa-solid fa-location-dot"></i></i> California, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="mySlides fade">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                    <img src="./img/event_4.jpg">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                            <div class="event-info"> 
-                                                <a class="event-date" href="#"><i class="fa-solid fa-calendar-days"></i> 24 February, 2018</a>
-                                                <h4>
-                                                    <a class="event-open"href="#">Opening Donation Day</a>
-                                                </h4>
-                                                <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                                <div class="event-timewhere">
-                                                    <a class="event-time" href="#"><i class="fa-solid fa-clock"></i> 10.00 - 3.00</a>
-                                                    <a class="event-where"href="#"><i class="fa-solid fa-location-dot"></i></i> California, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        
-                        
-                        <!-- The dots/circles -->
-                        <div style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        </div>
-        <section class="section-testimonials">
-            <!--add this-->
-            <div class="container">
-            <div class="bg-video">
-                <!--add this--><video class="bg-video__content" autoplay muted loop>
-                    <!--add this-->
-                    <source src="img/bg-testi.mp4" type="video/mp4">
-                    <!--add this-->
-                    <source src="img/bg-testi.webm" type="video/webm">
-                    <!--add this--> Your browser is not supported
-                    <!--add this--></video>
-            </div>
-
-            <div class="u-center-text u-margin-bottom-big">
-                <h2 class="heading-secondary">
-                    testimonials
-                </h2>
-            </div>
-            <div class="row">
-                <div class="testimonial">
-                    <figure class="testimonial__shape">
-                        <img src="./img/person1.jpg" class="testimonial__img" alt="photo1">
-                        <figcaption class="testimonial__caption">
-                            Lionel Meshi
-                        </figcaption>
-                    </figure>
-                    <div class="testimonial__text">
-                        <h3 class="heading-tertiary u-margin-bottom-small">
-                            thank for your guide
-                        </h3>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Incidunt repellat tenetur officia quis quasi,
-                            temporibus neque reiciendis quaerat exercitationem quibusdam?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Possimus dolorem labore nam?
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <figure class="testimonial__shape">
-                        <img src="./img/person2.jpg" class="testimonial__img" alt="photo2">
-                        <figcaption class="testimonial__caption">
-                            Hellarri Cshinson
-                        </figcaption>
-                    </figure>
-                    <div class="testimonial__text">
-                        <h3 class="heading-tertiary u-margin-bottom-small">
-                            very helpful course
-                        </h3>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Incidunt repellat tenetur officia quis quasi,
-                            temporibus neque reiciendis quaerat exercitationem quibusdam?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Possimus dolorem labore nam?
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="u-center-text u-margin-top-big u-margin-bottom-big">
-                <a href="#" class="btn-text">read all the testimonials &rarr;</a>
-            </div>
-        </div>
-        </section>
-        <div class="parallax__enroll">
-        <section class="section-enroll">
-            <div class="container">
-                <div class="row">
-                    <div class="enroll">
-                        <div class="enroll__form">
-                            <form class="form">
-                                <div>
-                                    <h2 class="heading-secondary">
-                                        enroll now
-                                    </h2>
-                                </div>
-                                <div class="form__group">
-                                    <input id="name" type="text" class="form__input" placeholder="full name" required>
-                                    <label for="name" class="form__label">Full name</label>
-                                </div>
-                                <div class="form__group">
-                                    <input id="email" type="email" class="form__input" placeholder="email" required>
-                                    <label for="email" class="form__label">Email</label>
-                                </div>
-                                <div class="form__group">
-                                    <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="male" name="gender">
-                                        <label for="male" class="form__radio-label">
-                                            <span class="form__radio-button"></span>
-                                            Male
-                                        </label>
-                                    </div>
-                                    <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="female" name="gender">
-                                        <label for="female" class="form__radio-label">
-                                            <span class="form__radio-button"></span>
-                                            Female
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form__group">
-                                    <input id="phone" type="phone" class="form__input" placeholder="phone" required>
-                                    <label for="phone" class="form__label">Phone</label>
-                                </div>
-                                <div class="form__group">
-                                    <input id="donation" type="donation" class="form__input" placeholder="Donation Center" required>
-                                    <label for="donation" class="form__label">Donation Center</label>
-                                </div>
-                                <div class="form__group">
-                                    <input id="date" type="date" class="form__input" placeholder="Date" required>
+                            <!--slection-->
+                            <div class="form-group"> 
+                                <label class="col-md-4 control-label">Blood group</label>
+                                <div class="col-md-4 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select name="state" class="form-control selectpicker" >
+                                    <option value=" " >Please select your blood group</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                    <option >O+</option>
+                                    <option >O-</option>
+                                    <option >A+</option>
+                                    <option >B+</option>
+                                    <option >A-</option>
+                                    <option >B-</option>
                                     
+                                </select>
                                 </div>
-                                <div class="form__group">
-                                    <a href="#" class="btn btn--blue">
-                                        Submit &rarr;
-                                    </a>
+                            </div>
+                            </div>
+                            
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                            <label class="col-md-4 control-label">Hopital Name</label>  
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                            <input name="website" placeholder="Hopital Name" class="form-control" type="text" required>
                                 </div>
+                            </div>
+                            </div>
+                            
+                            <!-- radio checks
+                            <div class="form-group">
+                                                    <label class="col-md-4 control-label">Do you have hosting?</label>
+                                                    <div class="col-md-4">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="hosting" value="yes" /> Yes
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="hosting" value="no" /> No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                            
+                            <!-- Text area -->
+                            
+                            <div class="form-group">
+                            <label class="col-md-4 control-label">Note</label>
+                                <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <textarea class="form-control" name="comment" placeholder="Note"></textarea>
+                            </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Success message -->
+                            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+                            
+                            <!-- Button -->
+                            <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+                            </div>
+                            </div>
+                            
+                            </fieldset>
                             </form>
                         </div>
                     </div>
+                    <div class="col-sm-12 col-md-12 col-lg-9 col-xl-3">
+                        <img src="./img/event_4.jpg">
+                    </div>
                 </div>
-            </div>
+            </div><!-- /.container -->
         </section>
-        </div>
 
+
+        <!-- <div class="options">
+            <div class="option active" style="--optionBackground:url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg);">
+               <div class="shadow"></div>
+               <div class="label">
+                  <div class="icon">
+                     <i class="fas fa-walking"></i>
+                  </div>
+                  <div class="info">
+                     <div class="main">Blonkisoaz</div>
+                     <div class="sub">Omuke trughte a otufta</div>
+                  </div>
+               </div>
+            </div>
+            <div class="option" style="--optionBackground:url(https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg);">
+               <div class="shadow"></div>
+               <div class="label">
+                  <div class="icon">
+                     <i class="fas fa-snowflake"></i>
+                  </div>
+                  <div class="info">
+                     <div class="main">Oretemauw</div>
+                     <div class="sub">Omuke trughte a otufta</div>
+                  </div>
+               </div>
+            </div>
+            <div class="option" style="--optionBackground:url(https://66.media.tumblr.com/5af3f8303456e376ceda1517553ba786/tumblr_o4986gakjh1qho82wo1_1280.jpg);">
+               <div class="shadow"></div>
+               <div class="label">
+                  <div class="icon">
+                     <i class="fas fa-tree"></i>
+                  </div>
+                  <div class="info">
+                     <div class="main">Iteresuselle</div>
+                     <div class="sub">Omuke trughte a otufta</div>
+                  </div>
+               </div>
+            </div>
+            <div class="option" style="--optionBackground:url(https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg);">
+               <div class="shadow"></div>
+               <div class="label">
+                  <div class="icon">
+                     <i class="fas fa-tint"></i>
+                  </div>
+                  <div class="info">
+                     <div class="main">Idiefe</div>
+                     <div class="sub">Omuke trughte a otufta</div>
+                  </div>
+               </div>
+            </div>
+            <div class="option" style="--optionBackground:url(https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg);">
+               <div class="shadow"></div>
+               <div class="label">
+                  <div class="icon">
+                     <i class="fas fa-sun"></i>
+                  </div>
+                  <div class="info">
+                     <div class="main">Inatethi</div>
+                     <div class="sub">Omuke trughte a otufta</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+         <a href="http://victorofvalencia-blog.tumblr.com" target="_blank" class="credit">Photos from Victor of Valencia on tumblr</a> -->
+
+       
     </main>
-    
+
 </body>
 <footer>
     <div class="footer">
@@ -682,49 +609,138 @@
     </filter>
   </defs>
 </svg>
-</footer>
+</footer> 
+
 <script>
-        var slideIndex = 1;
-    showSlides(slideIndex);
-
-    // Next/previous controls
-    function plusSlides(n) {
-    showSlides(slideIndex += n);
-    }
-
-    // Thumbnail image controls
-    function currentSlide(n) {
-    showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    }
+    $(document).ready(function() {
+        $('#contact_form').bootstrapValidator({
+            // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                first_name: {
+                    validators: {
+                            stringLength: {
+                            min: 2,
+                        },
+                            notEmpty: {
+                            message: 'Please supply your first name'
+                        }
+                    }
+                },
+                 last_name: {
+                    validators: {
+                         stringLength: {
+                            min: 2,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your last name'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your email address'
+                        },
+                        emailAddress: {
+                            message: 'Please supply a valid email address'
+                        }
+                    }
+                },
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your phone number'
+                        },
+                        phone: {
+                            country: 'US',
+                            message: 'Please supply a vaild phone number with area code'
+                        }
+                    }
+                },
+                address: {
+                    validators: {
+                         stringLength: {
+                            min: 8,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your street address'
+                        }
+                    }
+                },
+                city: {
+                    validators: {
+                         stringLength: {
+                            min: 4,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your city'
+                        }
+                    }
+                },
+                state: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select your state'
+                        }
+                    }
+                },
+                zip: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your zip code'
+                        },
+                        zipCode: {
+                            country: 'US',
+                            message: 'Please supply a vaild zip code'
+                        }
+                    }
+                },
+                comment: {
+                    validators: {
+                          stringLength: {
+                            min: 10,
+                            max: 200,
+                            message:'Please enter at least 10 characters and no more than 200'
+                        },
+                        notEmpty: {
+                            message: 'Please supply a description of your project'
+                        }
+                        }
+                    }
+                }
+            })
+            .on('success.form.bv', function(e) {
+                $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                    $('#contact_form').data('bootstrapValidator').resetForm();
+    
+                // Prevent form submission
+                e.preventDefault();
+    
+                // Get the form instance
+                var $form = $(e.target);
+    
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+    
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                    console.log(result);
+                }, 'json');
+            });
+    });
+    
+   
 </script>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js""></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-   <script>
-    jQuery(document).ready(function ($) {
-        $('.counter').counterUp({
-            delay: 10,
-            time: 5000
-        })
-    })
+<script>
+    $(".option").click(function(){
+        $(".option").removeClass("active");
+        $(this).addClass("active");
+        
+     });
 </script>
 </html>
