@@ -6,7 +6,7 @@ Contributors to complete and update the product:
 - Đỗ Hoàng Nhung	 -	ITITIU19176
 - Nguyễn Quốc Bảo		-	ITITIU19081 
 - Văn Hoàng Quế Anh	-	ITITIU19003
-- Nguyễn Thanh Thảo	 -	ITDSIU1905
+- Nguyễn Thanh Thảo	 -	ITDSIU19053
 
 Contact via Facebook:
 - Trần Thị Huỳnh Như	-	https://www.facebook.com/profile.php?id=100010707667900
