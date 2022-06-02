@@ -11,12 +11,9 @@ const connection = mysql.createConnection({
   database: process.env.DATABASE,
 });
 
-// simple query
-connection.query("SELECT * FROM `donor`", function (err, results, fields) {
-  console.log(">>> check mysql");
-  console.log(results);
-  // console.log(results); // results contains rows returned by server
-  // console.log(fields); // fields contains extra meta data about results, if available
+connection.connect((error) => {
+  if (error) throw error;
+  console.log("Successfully connected to the database");
 });
 
 export default connection;
