@@ -311,11 +311,7 @@ body {
 }
 
 header {
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(236, 0, 140, 0.5),
-      rgba(252, 103, 103, 0.5)
-    ),
+  background-image: 
     url("../img/heart-bg.jpg");
   background-size: cover;
   background-position: top;
@@ -485,13 +481,9 @@ header {
   position: fixed;
   top: 6.5rem;
   right: 6.5rem;
-  background-image: linear-gradient(
-    to right bottom,
-    rgba(236, 0, 140, 0.5),
-    rgba(252, 103, 103, 0.5)
-  );
+  background: linear-gradient(to right, #ef3b36, #ffffff);
   z-index: 1000;
-  opacity: 0.5;
+  opacity: 0.9;
   transition: transform 0.8s;
 }
 @media (max-width: 900px) {
@@ -541,12 +533,7 @@ header {
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  background-image: radial-gradient(
-    150% 200% ellipse at 115%,
-    #fff 0%,
-    #fff 50%,
-    transparent 50%
-  );
+  
   background-size: 252%;
   transition: all 0.4s;
 }
@@ -554,7 +541,7 @@ header {
 .navigation__link:hover,
 .navigation__link:active {
   background-position: 100%;
-  background-image: linear-gradient(to right bottom, #ff512f, #f09819);
+  background-image: linear-gradient(to right bottom, #EECDA3, #EF629F);
   transform: translateX(1rem);
 }
 
@@ -760,7 +747,7 @@ ul.nav__ul {
 
 ul.nav__ul li {
   margin: 2rem 1rem 1rem 3rem;
-  font: 1.4rem "Segoe UI", Arial, sans-serif;
+  font: 2.4rem "Segoe UI", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.01rem;
@@ -786,7 +773,9 @@ ul.nav__ul li {
   font-weight: 900;
 }
 .footer-16371 .footer-site-logo a {
-  color: #4200ff;
+  background-image: linear-gradient(to right, #ff512f, #f09819);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .footer-16371 .nav-links {
   padding: 0;
@@ -797,10 +786,13 @@ ul.nav__ul li {
 }
 .footer-16371 .nav-links li a {
   padding: 10px;
+  font-size: 2rem;
   color: #000;
 }
 .footer-16371 .nav-links li a:hover {
-  color: #4200ff;
+  background-image: linear-gradient(to right, #ff512f, #f09819);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .footer-16371 .social h3 {
   font-weight: bold;
@@ -809,6 +801,7 @@ ul.nav__ul li {
 }
 .footer-16371 .social ul li {
   display: inline-block;
+  font-size: 2rem;
 }
 .footer-16371 .social ul li a {
   display: inline-block;
@@ -831,6 +824,7 @@ ul.nav__ul li {
 }
 .footer-16371 .copyright {
   color: #999999;
+  font-size: 2rem;
 }
 a {
   -webkit-transition: 0.3s all ease;
