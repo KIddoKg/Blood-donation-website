@@ -6,7 +6,7 @@ let router = express.Router();
 const initStaffpage = (app) => {
   router.get("/", staffController.getHomepage);
   router.get("/addBlood", staffController.AddBlood);
-  router.get("/updateDonor", staffController.UpdateDonor);
+  // router.get("/updateDonor", staffController.UpdateDonor);
 
   return app.use("/staff", router);
 };
