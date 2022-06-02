@@ -1,5 +1,4 @@
 const express = require("express");
-// const expressLayouts = require("express-ejs-layouts");
 import configViewEngine from "./configs/viewEngine";
 
 require("dotenv").config();
@@ -15,9 +14,6 @@ const app = express();
 
 // setup view engine
 configViewEngine(app);
-
-// set layout
-// app.set("layout", "./layouts/main.ejs");
 
 //route home.js
 homeRoute(app);
