@@ -1,21 +1,27 @@
 const express = require("express");
+const app = express();
+
 import configViewEngine from "./configs/viewEngine";
 import connection from "./configs/connectDB";
+import bodyParser from "body-parser";
 require("dotenv").config();
 
+// setup body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// import routes
 import homeRoute from "./routes/home";
 import donorRoute from "./routes/donor";
 import hospitalRoute from "./routes/hospital";
 import staffRoute from "./routes/staff";
-
-const app = express();
 
 // app.use(expressLayouts);
 
 // setup view engine
 configViewEngine(app);
 
-//route home.js
+// setup routes
 homeRoute(app);
 donorRoute(app);
 hospitalRoute(app);
