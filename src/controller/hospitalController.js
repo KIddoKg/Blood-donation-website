@@ -3,6 +3,7 @@ let getHomepage = (req, res) => {
 };
 
 let Ordering = (req, res) => {
+  //
   return res.render("orderBlood.ejs");
 };
 
