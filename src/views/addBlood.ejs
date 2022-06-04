@@ -138,22 +138,93 @@
               </div>
             </div>
             <div class="card-body">
-              <form>
+              
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <div class="pl-lg-4">
+                  <form>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-iddonor">ID Donor</label>
                         <input type="text" id="input-iddonor" class="form-control form-control-alternative" placeholder="iddonor" value="1256">
                       </div>
+                      
                     </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" ></label>
+                        <br>
+                        <input type="submit" class="btn btn-sm btn-primary" >
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  
+                  </form>
+                  <hr class="my-4">
+                  <!-- Address -->
+                <form>
+                  <h6 class="heading-small text-muted mb-4">Volume</h6>
+                  <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Name</label>
-                        <input type="email" id="input-username" class="form-control form-control-alternative" placeholder=""  disabled>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder=""  disabled>
                       </div>
                     </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-ssn">SSN</label>
+                        <input type="text" id="input-ssn" class="form-control form-control-alternative" placeholder=""  disabled>
+                      </div>
+                    </div>
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email</label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder=""  disabled>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-gender">Gender</label>
+                        <input type="text" id="input-gender" class="form-control form-control-alternative" placeholder=""  disabled>
+                      </div>
+                    </div>
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email</label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder=""  disabled>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-gender">Gender</label>
+                        <input type="text" id="input-gender" class="form-control form-control-alternative" placeholder=""  disabled>
+                      </div>
+                    </div>
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-phone">Phone</label>
+                        <input type="text" id="input-phone" class="form-control form-control-alternative" placeholder=""  disabled>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">Address</label>
+                        <input type="text" id="input-address" class="form-control form-control-alternative" placeholder=""  disabled>
+                      </div>
+                    </div>
+                   
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
@@ -171,7 +242,20 @@
                           </select>
                       </div>
                     </div>
-                   
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-cancel"></label>
+                        <div class="row">
+                        <div class="col-lg-3">
+                        <input type="checkbox" id="input-cancel" class="form-checkbox" placeholder="" value="bh" >
+                        </div>
+                        <div class="col-lg-9">
+                          <label class="form-control-checkbox" for="input-cancel">Cancel Donate</label>
+                        </div>
+                      </div>
+                       
+                      </div>
+                    </div>
                   </div>
                   <div class="row">
                     
@@ -182,11 +266,14 @@
                       </div>
                     </div>
                   </div>
+                  <input type="submit" class="btn btn-sm btn-primary" value="Submit">
+                </form>
+
                 </div>
                 
                 
-                <input type="submit" class="btn btn-sm btn-primary" value="Submit">
-              </form>
+                
+             
               
             </div>
           </div>
@@ -196,7 +283,7 @@
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Bank Profile</h3>
+                  <h3 class="mb-0">Blood Stock</h3>
                 </div>
                 <div class="col-4 text-left">
                   <a id="btn3"href="#!" class="btn btn-sm btn-primary">Hide</a>
@@ -248,6 +335,15 @@
                           <option value="350">350 ml</option>
                           <option value="500">500 ml</option>
                         </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    
+                    <div class="col-lg-12">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-medical">Medical Record</label>
+                        <textarea type="text" id="input-medical" class="form-control form-control-alternative" name="medical"> </textarea>
                       </div>
                     </div>
                   </div>
