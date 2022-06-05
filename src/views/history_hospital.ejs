@@ -26,7 +26,7 @@
     />
 
     <!-- Style -->
-    <link rel="stylesheet" href="../public/css/order_history.css" />
+    <link rel="stylesheet" href="../css/order_history.css" />
   </head>
   <body>
     <div class="content">
@@ -48,32 +48,21 @@
             </thead>
             <tbody>
               <!-- Row 1 -->
+              <% if (orderBlood.length > 0) { %> <% for (var i = 0; i <
+              orderBlood.length; i++) { %>
               <tr scope="row">
-                <td>B0001</td>
-                <td>03/06/2022</td>
-                <td>Red Cells</td>
-                <td>O+</td>
-                <td>200 mL</td>
-                <td>01/06/2022</td>
-                <td>30/06/2022</td>
+                <td><%- orderBlood[i].bid %></td>
+                <td><%- order_date[i] %></td>
+                <td><%- orderBlood[i].product_type %></td>
+                <td><%- orderBlood[i].blood_type %></td>
+                <td><%- orderBlood[i].volume %></td>
+                <td><%- input_date[i] %></td>
+                <td><%- input_date[i] %></td>
               </tr>
               <tr class="spacer">
                 <td colspan="100"></td>
               </tr>
-
-              <!-- Row 2 -->
-              <tr scope="row">
-                <td>B0002</td>
-                <td>03/06/2022</td>
-                <td>Red Cells</td>
-                <td>O+</td>
-                <td>200 mL</td>
-                <td>01/06/2022</td>
-                <td>30/06/2022</td>
-              </tr>
-              <tr class="spacer">
-                <td colspan="100"></td>
-              </tr>
+              <% } } %>
             </tbody>
           </table>
         </div>

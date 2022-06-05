@@ -33,16 +33,16 @@ let Searching = (req, res) => {
       }
 
       // Convert full date string to "dd/mm/yyyy" format
-      const input = [];
-      // const expiry = [];
+      const dateInput = [];
+      // const dateExpiry = [];
       for (var i = 0; i < result.length; i++) {
-        input[i] = format(result[i].input_date);
-        // expiry[i] = format(result[i].exp_date);
+        dateInput[i] = format(result[i].input_date);
+        // dateExpiry[i] = format(result[i].exp_date);
       }
       res.render("orderBlood.ejs", {
         orderBlood: result,
-        input_date: input,
-        // exp_date: expiry,
+        input_date: dateInput,
+        // exp_date: dateExpiry,
         layout: "./layouts/authentication",
       });
     }
@@ -89,38 +89,33 @@ let Ordering = (req, res) => {
 };
 
 let HistoryOrder = (req, res) => {
-  var product_type = req.query.producttype;
-  var blood_type = req.query.bloodtype;
-  var volume = req.query.volume;
+  var hid = "H0001";
 
-  var sqlSearch =
-    "select * from BloodStock where product_type = ? and blood_type = ? and volume = ? and is_ordered = 0;";
+  var sqlOrderHistory =
+    "select B.bid, O.order_date, B.product_type, B.blood_type, B.volume, B.input_date, B.exp_date from BloodStock B, Ordering O where O.hid = ? and O.bid = B.bid order by O.order_date asc;";
 
-  connection.query(
-    sqlSearch,
-    [product_type, blood_type, volume],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(result);
-
-      // Convert full date string to "dd/mm/yyyy" format
-      const input = [];
-      // const expiry = [];
-      for (var i = 0; i < result.length; i++) {
-        input[i] = format(result[i].input_date);
-        // expiry[i] = format(result[i].exp_date);
-      }
-      res.render("orderBlood.ejs", {
-        orderBlood: result,
-        input_date: input,
-        // exp_date: expiry,
-        layout: "./layouts/authentication",
-      });
+  connection.query(sqlOrderHistory, [hid], (err, result) => {
+    if (err) {
+      console.log(err);
     }
-  );
-  return res.render("history_hospital.ejs");
+
+    // Convert full date string to "dd/mm/yyyy" format
+    const dateOrder = [];
+    const dateInput = [];
+    // const dateExpiry = [];
+    for (var i = 0; i < result.length; i++) {
+      dateOrder[i] = format(result[i].order_date);
+      dateInput[i] = format(result[i].input_date);
+      // dateExpiry[i] = format(result[i].exp_date);
+    }
+    res.render("history_hospital.ejs", {
+      orderBlood: result,
+      order_date: dateOrder,
+      input_date: dateInput,
+      // exp_date: dateExpiry,
+      layout: "./layouts/authentication",
+    });
+  });
 };
 
 module.exports = {
