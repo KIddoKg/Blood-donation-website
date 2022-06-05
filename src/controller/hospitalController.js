@@ -16,6 +16,26 @@ function format(date) {
   return day + "/" + month + "/" + year;
 }
 
+let OrderLoading = (req, res) => {
+  var hid = "H0001";
+
+  // // get hospital name to display welcome
+  var sqlHname = "select * from Hospital where hid = ?;";
+  var hospitalName = "";
+
+  connection.query(sqlHname, [hid], (err, result) => {
+    hospitalName = result[0].hname;
+
+    res.render("orderBlood.ejs", {
+      hospitalName: hospitalName,
+      orderBlood: [],
+      input_date: [],
+      // exp_date: [],
+      layout: "./layouts/authentication",
+    });
+  });
+};
+
 let Searching = (req, res) => {
   var hid = "H0001";
   var product_type = req.query.producttype;
@@ -30,6 +50,7 @@ let Searching = (req, res) => {
     hospitalName = result[0].hname;
   });
 
+  // Search the blood stocks
   var sqlSearch =
     "select * from BloodStock where product_type = ? and blood_type = ? and volume = ? and is_ordered = 0;";
 
@@ -41,20 +62,27 @@ let Searching = (req, res) => {
         console.log(err);
       }
 
-      // Convert full date string to "dd/mm/yyyy" format
-      const dateInput = [];
-      // const dateExpiry = [];
-      for (var i = 0; i < result.length; i++) {
-        dateInput[i] = format(result[i].input_date);
-        // dateExpiry[i] = format(result[i].exp_date);
+      if (result.length === 0) {
+        res.render("notification.ejs", {
+          blood_type: blood_type,
+          layout: "./layouts/authentication",
+        });
+      } else {
+        // Convert full date string to "dd/mm/yyyy" format
+        const dateInput = [];
+        // const dateExpiry = [];
+        for (var i = 0; i < result.length; i++) {
+          dateInput[i] = format(result[i].input_date);
+          // dateExpiry[i] = format(result[i].exp_date);
+        }
+        res.render("orderBlood.ejs", {
+          orderBlood: result,
+          input_date: dateInput,
+          // exp_date: dateExpiry,
+          hospitalName: hospitalName,
+          layout: "./layouts/authentication",
+        });
       }
-      res.render("orderBlood.ejs", {
-        orderBlood: result,
-        input_date: dateInput,
-        // exp_date: dateExpiry,
-        hospitalName: hospitalName,
-        layout: "./layouts/authentication",
-      });
     }
   );
 };
@@ -130,6 +158,7 @@ let HistoryOrder = (req, res) => {
 
 module.exports = {
   getHomepage,
+  OrderLoading,
   Searching,
   Ordering,
   HistoryOrder,
