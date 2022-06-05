@@ -17,9 +17,18 @@ function format(date) {
 }
 
 let Searching = (req, res) => {
+  var hid = "H0001";
   var product_type = req.query.producttype;
   var blood_type = req.query.bloodtype;
   var volume = req.query.volume;
+
+  // // get hospital name to display welcome
+  var sqlHname = "select * from Hospital where hid = ?;";
+  var hospitalName = "";
+
+  connection.query(sqlHname, [hid], (err, result) => {
+    hospitalName = result[0].hname;
+  });
 
   var sqlSearch =
     "select * from BloodStock where product_type = ? and blood_type = ? and volume = ? and is_ordered = 0;";
@@ -43,6 +52,7 @@ let Searching = (req, res) => {
         orderBlood: result,
         input_date: dateInput,
         // exp_date: dateExpiry,
+        hospitalName: hospitalName,
         layout: "./layouts/authentication",
       });
     }
