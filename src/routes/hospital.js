@@ -8,6 +8,7 @@ const initHospitalpage = (app) => {
   router.get("/order", hospitalController.OrderLoading);
   router.get("/ordering", hospitalController.Searching);
   router.post("/ordering", hospitalController.Ordering);
+  router.get("/contactus", hospitalController.Notification);
   router.get("/historyOrder", hospitalController.HistoryOrder);
 
   return app.use("/hospital", router);

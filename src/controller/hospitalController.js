@@ -126,6 +126,10 @@ let Ordering = (req, res) => {
   }
 };
 
+let Notification = (req, res) => {
+  res.render("contactus.ejs", { layout: "./layouts/authentication" });
+};
+
 let HistoryOrder = (req, res) => {
   var hid = "H0001";
 
@@ -146,6 +150,7 @@ let HistoryOrder = (req, res) => {
       dateInput[i] = format(result[i].input_date);
       // dateExpiry[i] = format(result[i].exp_date);
     }
+
     res.render("history_hospital.ejs", {
       orderBlood: result,
       order_date: dateOrder,
@@ -161,5 +166,6 @@ module.exports = {
   OrderLoading,
   Searching,
   Ordering,
+  Notification,
   HistoryOrder,
 };
