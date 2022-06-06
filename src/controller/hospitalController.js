@@ -76,14 +76,15 @@ let Searching = (req, res) => {
           // dateExpiry[i] = format(result[i].exp_date);
         }
 
-        res.render("orderBlood.ejs", {
-          orderBlood: result,
-          input_date: dateInput,
-          // exp_date: dateExpiry,
-          hospitalName: hospitalName,
-          message: "",
-          layout: "./layouts/authentication",
-        });
+        // res.render("orderBlood.ejs", {
+        //   orderBlood: result,
+        //   input_date: dateInput,
+        //   // exp_date: dateExpiry,
+        //   hospitalName: hospitalName,
+        //   message: "",
+        //   layout: "./layouts/authentication",
+        // });
+        res.send({ orderBlood: result[0].bid });
       }
     }
   );

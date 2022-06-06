@@ -17,6 +17,8 @@
       rel="stylesheet"
     />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- Checked icon -->
     <link rel="stylesheet" href="../iconic/order_fonts/style.css" />
 
@@ -25,18 +27,23 @@
   </head>
   <body>
     <div class="page-wrapper p-t-95">
-      <div class="welcome m-b-100">
+      <!-- <div class="welcome m-b-100">
         <h1>Welcome to <span>BloodLife</span>, <%= hospitalName %>!</h1>
         <% if (message.length > 0) { %>
         <h2 class="mess"><%= message %></h2>
         <% } %>
-      </div>
+      </div> -->
 
       <!-- Searching Bar -->
       <div class="wrapper wrapper--w1070">
         <div class="card card-7">
           <div class="card-body">
-            <form class="form" method="get" action="/hospital/ordering">
+            <form
+              class="form"
+              method="get"
+              action="/hospital/ordering"
+              id="searchForm"
+            >
               <!-- Blood Product Type -->
               <div class="input-group input--large">
                 <label class="label">blood product type</label>
@@ -134,9 +141,11 @@
                       <div class="control__indicator"></div>
                     </label>
                   </th>
-                  <td><%- orderBlood[i].bid %></td>
-                  <td><%- input_date[i] %></td>
-                  <td><%- input_date[i] %></td>
+                  <td><%= orderBlood %></td>
+                  <td>helu</td>
+                  <td>helu</td>
+                  <!-- <td><%- input_date[i] %></td>
+                  <td><%- input_date[i] %></td> -->
                 </tr>
                 <tr class="spacer">
                   <td colspan="100"></td>
@@ -154,6 +163,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
+      // For check-all button of result table
       $(function () {
         $(".js-check-all").on("click", function () {
           if ($(this).prop("checked")) {
@@ -175,6 +185,30 @@
           } else {
             $(this).closest("tr").addClass("active");
           }
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#searchForm").on("submit", function (event) {
+          event.preventDefault();
+          let product_type = $("#producttype").val();
+          let blood_type = $("#bloodtype").val();
+          let volume = $("#volume").val();
+
+          $.ajax({
+            url: "/hospital/ordering",
+            method: "get",
+            contentType: "application/json",
+            data: JSON.stringify({
+              product_type: product_type,
+              blood_type: blood_type,
+              volume: volume,
+            }),
+            success: function (res) {
+              $("td").html(`${res.orderBlood}`);
+            },
+          });
         });
       });
     </script>
