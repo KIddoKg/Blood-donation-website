@@ -95,54 +95,29 @@ let Ordering = (req, res) => {
 
   // Get hospital name to display welcome
   var sqlHname = "select * from Hospital where hid = ?;";
-  var hospitalName = "";
 
   connection.query(sqlHname, [hid], (err, result) => {
-    hospitalName = result[0].hname;
-  });
+    var hospitalName = result[0].hname;
 
-  console.log(hospitalName);
+    var sqlOrder =
+      "insert into Ordering(hid, bid, order_date) values (?, ?, ?);";
+    var sqlUpdate = "update BloodStock set is_ordered = 1 where bid = ?;";
 
-  var sqlOrder = "insert into Ordering(hid, bid, order_date) values (?, ?, ?);";
-  var sqlUpdate = "update BloodStock set is_ordered = 1 where bid = ?;";
-
-  const { orderedBs } = req.body;
-  if (typeof orderedBs === "string") {
-    connection.query(sqlOrder, [hid, orderedBs, order_date], (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("insert successfully");
-      }
-    });
-
-    connection.query(sqlUpdate, orderedBs, (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("update successfully");
-      }
-    });
-
-    res.render("orderBlood.ejs", {
-      hospitalName: hospitalName,
-      message: "Order Successfull!",
-      orderBlood: [],
-      input_date: [],
-      // exp_date: [],
-      layout: "./layouts/authentication",
-    });
-  } else {
-    Object.values(orderedBs).forEach((bid) => {
-      connection.query(sqlOrder, [hid, bid, order_date], (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("insert successfully");
+    const { orderedBs } = req.body;
+    if (typeof orderedBs === "string") {
+      connection.query(
+        sqlOrder,
+        [hid, orderedBs, order_date],
+        (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("insert successfully");
+          }
         }
-      });
+      );
 
-      connection.query(sqlUpdate, [bid], (err, result) => {
+      connection.query(sqlUpdate, orderedBs, (err, result) => {
         if (err) {
           console.log(err);
         } else {
@@ -158,8 +133,35 @@ let Ordering = (req, res) => {
         // exp_date: [],
         layout: "./layouts/authentication",
       });
-    });
-  }
+    } else {
+      Object.values(orderedBs).forEach((bid) => {
+        connection.query(sqlOrder, [hid, bid, order_date], (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("insert successfully");
+          }
+        });
+
+        connection.query(sqlUpdate, [bid], (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("update successfully");
+          }
+        });
+
+        res.render("orderBlood.ejs", {
+          hospitalName: hospitalName,
+          message: "Order Successfull!",
+          orderBlood: [],
+          input_date: [],
+          // exp_date: [],
+          layout: "./layouts/authentication",
+        });
+      });
+    }
+  });
 };
 
 let Notification = (req, res) => {

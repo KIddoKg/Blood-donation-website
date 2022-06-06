@@ -64,6 +64,12 @@ span {
   font-weight: bold;
 }
 
+.mess {
+  color: #00ab00 !important;
+  text-align: center !important;
+  margin-top: 38px !important;
+}
+
 button {
   outline: none;
   background: none;
