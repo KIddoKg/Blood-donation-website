@@ -19,15 +19,15 @@ function format(date) {
 let OrderLoading = (req, res) => {
   var hid = "H0001";
 
-  // // get hospital name to display welcome
+  // Get hospital name to display welcome
   var sqlHname = "select * from Hospital where hid = ?;";
-  var hospitalName = "";
 
   connection.query(sqlHname, [hid], (err, result) => {
-    hospitalName = result[0].hname;
+    var hospitalName = result[0].hname;
 
     res.render("orderBlood.ejs", {
       hospitalName: hospitalName,
+      message: "",
       orderBlood: [],
       input_date: [],
       // exp_date: [],
@@ -42,7 +42,7 @@ let Searching = (req, res) => {
   var blood_type = req.query.bloodtype;
   var volume = req.query.volume;
 
-  // // get hospital name to display welcome
+  // Get hospital name to display welcome
   var sqlHname = "select * from Hospital where hid = ?;";
   var hospitalName = "";
 
@@ -75,11 +75,13 @@ let Searching = (req, res) => {
           dateInput[i] = format(result[i].input_date);
           // dateExpiry[i] = format(result[i].exp_date);
         }
+
         res.render("orderBlood.ejs", {
           orderBlood: result,
           input_date: dateInput,
           // exp_date: dateExpiry,
           hospitalName: hospitalName,
+          message: "",
           layout: "./layouts/authentication",
         });
       }
@@ -91,6 +93,16 @@ let Ordering = (req, res) => {
   var hid = "H0001";
   var order_date = new Date();
 
+  // Get hospital name to display welcome
+  var sqlHname = "select * from Hospital where hid = ?;";
+  var hospitalName = "";
+
+  connection.query(sqlHname, [hid], (err, result) => {
+    hospitalName = result[0].hname;
+  });
+
+  console.log(hospitalName);
+
   var sqlOrder = "insert into Ordering(hid, bid, order_date) values (?, ?, ?);";
   var sqlUpdate = "update BloodStock set is_ordered = 1 where bid = ?;";
 
@@ -99,35 +111,107 @@ let Ordering = (req, res) => {
     connection.query(sqlOrder, [hid, orderedBs, order_date], (err, result) => {
       if (err) {
         console.log(err);
+      } else {
+        console.log("insert successfully");
       }
-      console.log("insert successfully");
     });
+
     connection.query(sqlUpdate, orderedBs, (err, result) => {
       if (err) {
         console.log(err);
+      } else {
+        console.log("update successfully");
       }
-      console.log("update successfully");
+    });
+
+    res.render("orderBlood.ejs", {
+      hospitalName: hospitalName,
+      message: "Order Successfull!",
+      orderBlood: [],
+      input_date: [],
+      // exp_date: [],
+      layout: "./layouts/authentication",
     });
   } else {
     Object.values(orderedBs).forEach((bid) => {
       connection.query(sqlOrder, [hid, bid, order_date], (err, result) => {
         if (err) {
           console.log(err);
+        } else {
+          console.log("insert successfully");
         }
-        console.log("insert successfully");
       });
+
       connection.query(sqlUpdate, [bid], (err, result) => {
         if (err) {
           console.log(err);
+        } else {
+          console.log("update successfully");
         }
-        console.log("update successfully");
+      });
+
+      res.render("orderBlood.ejs", {
+        hospitalName: hospitalName,
+        message: "Order Successfull!",
+        orderBlood: [],
+        input_date: [],
+        // exp_date: [],
+        layout: "./layouts/authentication",
       });
     });
   }
 };
 
 let Notification = (req, res) => {
-  res.render("contactus.ejs", { layout: "./layouts/authentication" });
+  var hid = "H0001";
+
+  // Get hospital name and address to display welcome
+  var sqlHospital = "select * from Hospital where hid = ?;";
+
+  connection.query(sqlHospital, [hid], (err, result) => {
+    var hospitalName = result[0].hname;
+    var hospitalEmail = result[0].email;
+
+    res.render("contactus.ejs", {
+      hospitalName: hospitalName,
+      hospitalEmail: hospitalEmail,
+      message: "",
+      layout: "./layouts/authentication",
+    });
+  });
+};
+
+let SendMessage = (req, res) => {
+  var hid = "H0001";
+  var subject = req.body.subject;
+  var message = req.body.message;
+
+  // Get hospital name and address to display welcome
+  var sqlHospital = "select * from Hospital where hid = ?;";
+  var hospitalName = "";
+  var hospitalEmail = "";
+
+  connection.query(sqlHospital, [hid], (err, result) => {
+    hospitalName = result[0].hname;
+    hospitalEmail = result[0].email;
+  });
+
+  var sqlMess =
+    "insert into HospitalMessage(hid, subject, message) values (?, ?, ?);";
+
+  connection.query(sqlMess, [hid, subject, message], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("insert message successfully");
+      res.render("contactus.ejs", {
+        hospitalName: hospitalName,
+        hospitalEmail: hospitalEmail,
+        message: "Send Message Successful!",
+        layout: "./layouts/authentication",
+      });
+    }
+  });
 };
 
 let HistoryOrder = (req, res) => {
@@ -167,5 +251,6 @@ module.exports = {
   Searching,
   Ordering,
   Notification,
+  SendMessage,
   HistoryOrder,
 };

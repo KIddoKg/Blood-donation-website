@@ -9,6 +9,7 @@ const initHospitalpage = (app) => {
   router.get("/ordering", hospitalController.Searching);
   router.post("/ordering", hospitalController.Ordering);
   router.get("/contactus", hospitalController.Notification);
+  router.post("/contactus", hospitalController.SendMessage);
   router.get("/historyOrder", hospitalController.HistoryOrder);
 
   return app.use("/hospital", router);

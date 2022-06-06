@@ -34,13 +34,16 @@
                   class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch"
                 >
                   <div class="contact-wrap w-100 p-md-5 p-4">
-                    <h3 class="mb-4">Get in touch</h3>
+                    <h3 class="mb-4">Upcoming Feature...</h3>
+                    <% if (message.length > 0) { %>
+                    <h3 class="mess"><%= message %></h3>
+                    <% } %>
                     <form
-                      method="get"
+                      method="post"
                       id="contactForm"
                       name="contactForm"
                       class="contactForm"
-                      action="#"
+                      action="/hospital/contactus"
                     >
                       <div class="row">
                         <div class="col-md-6">
@@ -51,7 +54,8 @@
                               class="form-control"
                               name="name"
                               id="name"
-                              placeholder="Name"
+                              placeholder="<%= hospitalName %>"
+                              disabled
                             />
                           </div>
                         </div>
@@ -65,7 +69,8 @@
                               class="form-control"
                               name="email"
                               id="email"
-                              placeholder="Email"
+                              placeholder="<%= hospitalEmail %>"
+                              disabled
                             />
                           </div>
                         </div>
