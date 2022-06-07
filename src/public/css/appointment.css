@@ -42,7 +42,7 @@ a:hover {
 }
 
 .heading {
-  font-size: 2.5rem;
+  font-size:3rem;
   font-weight: 900;
 }
 
@@ -64,7 +64,7 @@ a:hover {
 
 .col-form-label {
   color: #000;
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 .btn,
@@ -84,7 +84,7 @@ a:hover {
 .btn {
   border: none;
   border-radius: 0;
-  font-size: 12px;
+  font-size: 1rem;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
 }
@@ -104,7 +104,7 @@ a:hover {
 }
 
 .contact-wrap .col-form-label {
-  font-size: 14px;
+  font-size: 1rem;
   color: #b3b3b3;
   margin: 0 0 10px 0;
   display: inline-block;
@@ -124,7 +124,7 @@ a:hover {
   color: rgba(255, 255, 255, 0.5);
 }
 .contact-wrap .contact-info ul li .wrap-icon {
-  font-size: 20px;
+  font-size:2 rem;
   color: #fff;
   margin-top: 5px;
 }
@@ -134,7 +134,7 @@ a:hover {
 }
 .contact-wrap .form h3 {
   color: #35477d;
-  font-size: 20px;
+  font-size:2rem;
   margin-bottom: 30px;
 }
 
@@ -158,12 +158,12 @@ a:hover {
 }
 .contact-wrap .contact-info h3 {
   color: #fff;
-  font-size: 20px;
+  font-size: 2rem;
   margin-bottom: 30px;
 }
 
 label.error {
-  font-size: 12px;
+  font-size: 2rem;
   color: red;
 }
 
@@ -182,7 +182,7 @@ label.error {
 
 #form-message-success {
   color: #55a44e;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -192,6 +192,6 @@ label.error {
   padding: 10px 0;
   display: none;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 1rem;
   color: #000;
 }

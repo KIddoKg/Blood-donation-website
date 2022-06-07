@@ -1361,7 +1361,7 @@
   }
   
   .bg-gradient-default {
-    background: linear-gradient(87deg,#FEECE9 0, #FEECE9 100%) !important;
+    background: linear-gradient(87deg,#e4ded0 0, #e4ded0 100%) !important;
   }
 
   
@@ -1965,3 +1965,4 @@
   #navbar .navbar {
     margin-bottom: 20px;
   }
+

@@ -14,9 +14,14 @@ let Information = (req, res) => {
   return res.render("information.ejs");
 };
 
+let Update = (req, res) => {
+  return res.render("updateDonor.ejs", { layout: "./layouts/authentication" });
+};
+
 module.exports = {
   HomepageDonor,
   // Nutripage,
   Appointment,
   Information,
+  Update,
 };

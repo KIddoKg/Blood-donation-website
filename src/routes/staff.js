@@ -4,8 +4,11 @@ import staffController from "../controller/staffController";
 let router = express.Router();
 
 const initStaffpage = (app) => {
-  router.get("/", staffController.getHomepage);
+  // router.get("/", staffController.getHomepage);
   router.get("/addBlood", staffController.AddBlood);
+  router.post("/addBlood", staffController.AddBloodPost);
+  router.get("/searching", staffController.AddBloodSearch);
+  router.post("/update", staffController.AddBloodUpdate);
   router.get("/updateDonor", staffController.UpdateDonor);
 
   return app.use("/staff", router);
