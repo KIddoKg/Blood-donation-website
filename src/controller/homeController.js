@@ -2,7 +2,7 @@
 import connection from "../configs/connectDB";
 import bcrypt from "bcryptjs";
 import Donor from "../models/donorModels";
-import passport from "passport";
+// import passport from "passport";
 
 let getHomepage = (req, res) => {
   return res.render("home_main.ejs");
@@ -134,6 +134,53 @@ let Register = (req, res) => {
   }
 };
 
+// let Login = (req, res) => {
+//   const { email, password } = req.body;
+//   let errors = [];
+//   if (!email || !password) {
+//     errors.push({ msg: "Please fill in all fields" });
+//   }
+//   if (errors.length > 0) {
+//     res.render("login.ejs", {
+//       layout: "./layouts/authentication.ejs",
+//       errors,
+//       email,
+//       password,
+//     });
+//   } else {
+//     var sql = "select * from Donor Where email = ?";
+//     connection.query(sql, [email], (err, data, fields) => {
+//       if (err) throw err;
+//       if (!data.length) {
+//         console.log(data);
+//         errors.push({ msg: "That email is not registered" });
+//         res.render("login.ejs", {
+//           layout: "./layouts/authentication.ejs",
+//           errors,
+//           email,
+//           password,
+//         });
+//       } else {
+//         var hashedPassword = data[0].password;
+//         bcrypt.compare(password, hashedPassword, (error, isMatch) => {
+//           if (error) throw error;
+//           if (isMatch) {
+//             res.redirect("/donor");
+//           } else {
+//             errors.push({ msg: "Password incorrect" });
+//             return res.render("login.ejs", {
+//               layout: "./layouts/authentication.ejs",
+//               errors,
+//               email,
+//               password,
+//             });
+//           }
+//         });
+//       }
+//     });
+//   }
+// };
+
 let Login = (req, res) => {
   const { email, password } = req.body;
   let errors = [];
@@ -152,7 +199,6 @@ let Login = (req, res) => {
     connection.query(sql, [email], (err, data, fields) => {
       if (err) throw err;
       if (!data.length) {
-        console.log(data);
         errors.push({ msg: "That email is not registered" });
         res.render("login.ejs", {
           layout: "./layouts/authentication.ejs",
@@ -161,10 +207,10 @@ let Login = (req, res) => {
           password,
         });
       } else {
-        var hashedPassword = data[0].password;
-        bcrypt.compare(password, hashedPassword, (error, isMatch) => {
-          if (error) throw error;
-          if (isMatch) {
+        bcrypt.compare(password, data[0].password, (err, result) => {
+          if (result == true) {
+            req.session.loggedin = true;
+            req.session.data = data;
             res.redirect("/donor");
           } else {
             errors.push({ msg: "Password incorrect" });
