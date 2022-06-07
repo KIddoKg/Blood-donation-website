@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
 
+    <!-- Ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Checked icon -->
@@ -27,12 +28,12 @@
   </head>
   <body>
     <div class="page-wrapper p-t-95">
-      <!-- <div class="welcome m-b-100">
+      <div class="welcome m-b-100">
         <h1>Welcome to <span>BloodLife</span>, <%= hospitalName %>!</h1>
         <% if (message.length > 0) { %>
         <h2 class="mess"><%= message %></h2>
         <% } %>
-      </div> -->
+      </div>
 
       <!-- Searching Bar -->
       <div class="wrapper wrapper--w1070">
@@ -141,11 +142,9 @@
                       <div class="control__indicator"></div>
                     </label>
                   </th>
-                  <td><%= orderBlood %></td>
-                  <td>helu</td>
-                  <td>helu</td>
-                  <!-- <td><%- input_date[i] %></td>
-                  <td><%- input_date[i] %></td> -->
+                  <td><%- orderBlood[i].bid %></td>
+                  <td><%- input_date[i] %></td>
+                  <td><%- exp_date[i] %></td>
                 </tr>
                 <tr class="spacer">
                   <td colspan="100"></td>
@@ -185,30 +184,6 @@
           } else {
             $(this).closest("tr").addClass("active");
           }
-        });
-      });
-    </script>
-    <script>
-      $(document).ready(function () {
-        $("#searchForm").on("submit", function (event) {
-          event.preventDefault();
-          let product_type = $("#producttype").val();
-          let blood_type = $("#bloodtype").val();
-          let volume = $("#volume").val();
-
-          $.ajax({
-            url: "/hospital/ordering",
-            method: "get",
-            contentType: "application/json",
-            data: JSON.stringify({
-              product_type: product_type,
-              blood_type: blood_type,
-              volume: volume,
-            }),
-            success: function (res) {
-              $("td").html(`${res.orderBlood}`);
-            },
-          });
         });
       });
     </script>

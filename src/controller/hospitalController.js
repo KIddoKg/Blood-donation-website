@@ -30,7 +30,7 @@ let OrderLoading = (req, res) => {
       message: "",
       orderBlood: [],
       input_date: [],
-      // exp_date: [],
+      exp_date: [],
       layout: "./layouts/authentication",
     });
   });
@@ -70,21 +70,20 @@ let Searching = (req, res) => {
       } else {
         // Convert full date string to "dd/mm/yyyy" format
         const dateInput = [];
-        // const dateExpiry = [];
+        const dateExpiry = [];
         for (var i = 0; i < result.length; i++) {
           dateInput[i] = format(result[i].input_date);
-          // dateExpiry[i] = format(result[i].exp_date);
+          dateExpiry[i] = format(result[i].exp_date);
         }
 
-        // res.render("orderBlood.ejs", {
-        //   orderBlood: result,
-        //   input_date: dateInput,
-        //   // exp_date: dateExpiry,
-        //   hospitalName: hospitalName,
-        //   message: "",
-        //   layout: "./layouts/authentication",
-        // });
-        res.send({ orderBlood: result[0].bid });
+        res.render("orderBlood.ejs", {
+          orderBlood: result,
+          input_date: dateInput,
+          exp_date: dateExpiry,
+          hospitalName: hospitalName,
+          message: "",
+          layout: "./layouts/authentication",
+        });
       }
     }
   );
@@ -131,7 +130,7 @@ let Ordering = (req, res) => {
         message: "Order Successfull!",
         orderBlood: [],
         input_date: [],
-        // exp_date: [],
+        exp_date: [],
         layout: "./layouts/authentication",
       });
     } else {
@@ -154,10 +153,10 @@ let Ordering = (req, res) => {
 
         res.render("orderBlood.ejs", {
           hospitalName: hospitalName,
-          message: "Order Successfull!",
+          message: "Order Successful!",
           orderBlood: [],
           input_date: [],
-          // exp_date: [],
+          exp_date: [],
           layout: "./layouts/authentication",
         });
       });
@@ -210,7 +209,7 @@ let SendMessage = (req, res) => {
       res.render("contactus.ejs", {
         hospitalName: hospitalName,
         hospitalEmail: hospitalEmail,
-        message: "Send Message Successful!",
+        message: "Message Sent Successfully!",
         layout: "./layouts/authentication",
       });
     }
@@ -231,18 +230,18 @@ let HistoryOrder = (req, res) => {
     // Convert full date string to "dd/mm/yyyy" format
     const dateOrder = [];
     const dateInput = [];
-    // const dateExpiry = [];
+    const dateExpiry = [];
     for (var i = 0; i < result.length; i++) {
       dateOrder[i] = format(result[i].order_date);
       dateInput[i] = format(result[i].input_date);
-      // dateExpiry[i] = format(result[i].exp_date);
+      dateExpiry[i] = format(result[i].exp_date);
     }
 
     res.render("history_hospital.ejs", {
       orderBlood: result,
       order_date: dateOrder,
       input_date: dateInput,
-      // exp_date: dateExpiry,
+      exp_date: dateExpiry,
       layout: "./layouts/authentication",
     });
   });
