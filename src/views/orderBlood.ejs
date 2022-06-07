@@ -121,6 +121,9 @@
                     </label>
                   </th>
                   <th scope="col" class="id">Blood Stock ID</th>
+                  <th scope="col" class="product_type">Product Type</th>
+                  <th scope="col" class="blood_type">Blood Group</th>
+                  <th scope="col" class="volume">Volume</th>
                   <th scope="col" class="collection">Collection Date</th>
                   <th scope="col" class="expiry">Expiry Date</th>
                 </tr>
@@ -143,6 +146,9 @@
                     </label>
                   </th>
                   <td><%- orderBlood[i].bid %></td>
+                  <td><%- orderBlood[i].product_type %></td>
+                  <td><%- orderBlood[i].blood_type %></td>
+                  <td><%- orderBlood[i].volume %></td>
                   <td><%- input_date[i] %></td>
                   <td><%- exp_date[i] %></td>
                 </tr>

@@ -430,23 +430,11 @@ h2 {
   min-width: 900px;
 }
 
-.table .radio {
-  width: 70px;
-}
-
-.table .id {
-  width: 180px;
-}
-
-.table .collection,
-.expiry {
-  width: 325px;
-}
-
 .custom-table thead tr,
 .custom-table thead th {
   border-top: none;
   border-bottom: none !important;
+  width: auto;
 }
 
 .custom-table tbody th,
@@ -455,6 +443,10 @@ h2 {
   font-size: 16px;
   font-weight: 400;
   padding: 18px 12px;
+}
+
+.table .radio {
+  width: 44px !important;
 }
 
 .custom-table tbody tr:not(.spacer) {
