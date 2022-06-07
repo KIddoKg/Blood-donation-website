@@ -134,13 +134,52 @@ let Register = (req, res) => {
   }
 };
 
-// let Login = (req, res, next) => {
-//   passport.authenticate("local", {
-//     successRedirect: "/donor/",
-//     failureFlash: "/login",
-//     failureFlash: true,
-//   })(req, res, next);
-// };
+let Login = (req, res) => {
+  const { email, password } = req.body;
+  let errors = [];
+  if (!email || !password) {
+    errors.push({ msg: "Please fill in all fields" });
+  }
+  if (errors.length > 0) {
+    res.render("login.ejs", {
+      layout: "./layouts/authentication.ejs",
+      errors,
+      email,
+      password,
+    });
+  } else {
+    var sql = "select * from Donor Where email = ?";
+    connection.query(sql, [email], (err, data, fields) => {
+      if (err) throw err;
+      if (!data.length) {
+        console.log(data);
+        errors.push({ msg: "That email is not registered" });
+        res.render("login.ejs", {
+          layout: "./layouts/authentication.ejs",
+          errors,
+          email,
+          password,
+        });
+      } else {
+        var hashedPassword = data[0].password;
+        bcrypt.compare(password, hashedPassword, (error, isMatch) => {
+          if (error) throw error;
+          if (isMatch) {
+            res.redirect("/donor");
+          } else {
+            errors.push({ msg: "Password incorrect" });
+            return res.render("login.ejs", {
+              layout: "./layouts/authentication.ejs",
+              errors,
+              email,
+              password,
+            });
+          }
+        });
+      }
+    });
+  }
+};
 
 module.exports = {
   getHomepage,
@@ -148,5 +187,5 @@ module.exports = {
   ShowLogin,
   Signup,
   Register,
-  // Login,
+  Login,
 };

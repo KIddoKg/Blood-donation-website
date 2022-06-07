@@ -8,9 +8,6 @@ require("dotenv").config();
 
 import flash from "connect-flash";
 import session from "express-session";
-import passport from "passport";
-import passportLocal from "passport-local";
-require("./configs/passport")(passport);
 
 // setup body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
