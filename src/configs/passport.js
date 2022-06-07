@@ -17,7 +17,6 @@ module.exports = function (passport) {
           return done(null, false, { message: "That email is not registered" });
         }
 
-        const isMatch = validPassword();
         // Math password
         bcrypt.compare(password, data.password, (err, isMatch) => {
           if (err) throw err;
@@ -36,6 +35,12 @@ module.exports = function (passport) {
     done(null, data.id);
   });
 
+  passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
+      done(err, user);
+    });
+  });
+
   passport.deserializeUser((id, done) => {
     // loginService
     //   .findUserById(id)
@@ -46,9 +51,9 @@ module.exports = function (passport) {
     //     return done(error, null);
     //   });
     var sql = "SELECT * FROM Donor WHERE id = ?";
-    connection.query(sql, [id], (err, results) => {
+    connection.query(sql, [id], (err, data) => {
       if (err) throw err;
-      return done(null, results);
+      return done(null, data);
     });
   });
 };

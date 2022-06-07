@@ -19,8 +19,8 @@ const initHomepage = (app) => {
   router.post(
     "/login",
     passport.authenticate("local", {
-      successRedirect: "/nutri",
-      failureFlash: "/login",
+      successRedirect: "/",
+      failureRedirect: "/login",
       failureFlash: true,
     })
   );
