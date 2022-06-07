@@ -34,9 +34,9 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-signup">
-          <form class="login100-form" method="" action="">
+          <form class="login100-form" method="post">
             <span class="login100-form-title p-b-56">Sign Up</span>
-
+          <%- include ("./partials/messages.ejs"); %>
             <div class="form-row">
               <!-- The first column -->
               <div class="form-group-1 col-md-6">
@@ -112,7 +112,7 @@
 
                 <!-- Email -->
                 <div class="wrap-input100">
-                  <input class="input100" type="email" name="email" />
+                  <input class="input100" type="email" name="email"  />
                   <span class="focus-input100" data-placeholder="Email"></span>
                 </div>
 
@@ -130,7 +130,7 @@
                   <span class="btn-show-pass">
                     <i class="zmdi zmdi-eye"></i>
                   </span>
-                  <input class="input100" type="password" name="pass" />
+                  <input class="input100" type="password" name="password" />
                   <span
                     class="focus-input100"
                     data-placeholder="Password"
@@ -142,7 +142,7 @@
                   <span class="btn-show-pass">
                     <i class="zmdi zmdi-eye"></i>
                   </span>
-                  <input class="input100" type="password" name="pass-confirm" />
+                  <input class="input100" type="password" name="pass_confirm" />
                   <span
                     class="focus-input100"
                     data-placeholder="Confirm password"

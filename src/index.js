@@ -6,6 +6,9 @@ import connection from "./configs/connectDB";
 import bodyParser from "body-parser";
 require("dotenv").config();
 
+import flash from "connect-flash";
+import session from "express-session";
+
 // setup body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -20,6 +23,30 @@ import staffRoute from "./routes/staff";
 
 // setup view engine
 configViewEngine(app);
+
+// setup session
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// Passport middleware
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// setup flash
+app.use(flash());
+
+// Global vars
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 // setup routes
 homeRoute(app);
