@@ -222,6 +222,11 @@
             </div>
         </section>
 <br>
+
+   
+
+      
+  </table>
         <div class="parallax__slide">
         <section class="section-slide">
             <div class="container">
@@ -238,10 +243,64 @@
                         </div>
 
                     </div>
+                   
                     <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
                         <div class="slideshow-container">
                             <!-- Full-width images with number and caption text -->
+                            <% if(event.length > 0){ %>
+                                <% for(var i = 0;i < event.length; i++){ %>
                             <div class="mySlides fade">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        
+                                               
+                                      <img src="./img/event_<%-event[i].idimg%>.jpg">  
+                                    
+                                  
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <div class="event-info"> 
+                                                <a class="event-date" href="#"><i class="fa-solid fa-calendar-days"></i> <%- start_date[i] %> -  <%- end_date[i] %></a>
+                                                <h4>
+                                                    <a class="event-open"href="#"><%- event[i].cname %></a>
+                                                </h4>
+                                                <div class="event-exceprt"><%- event[i].pledge_number %></div>
+                                                <div class="event-timewhere">
+                                                    <a class="event-time" href="#"><i class="fa-solid fa-clock"></i> <%- event[i].open_time %></a>
+                                                    <a class="event-where"href="#"><i class="fa-solid fa-location-dot"></i></i>  <%- event[i].address %></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>  
+                            <% }else { %>
+                                <div class="mySlides fade">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <img src="./img/noevent.png">
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="event-info"> 
+                                                    <br>
+                                                    <br>
+                                                    <h4>
+                                                        <a class="event-open"href="#">There are no events going on</a>
+                                                    </h4>
+                                                    <br>
+                                                    <br>
+                                                    <div class="event-exceprt">There are currently no ongoing or upcoming events. We will try to update you soon</div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                            <!-- <div class="mySlides fade">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -285,30 +344,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        
-                            <div class="mySlides fade">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                    <img src="./img/event_4.jpg">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                            <div class="event-info"> 
-                                                <a class="event-date" href="#"><i class="fa-solid fa-calendar-days"></i> 24 February, 2018</a>
-                                                <h4>
-                                                    <a class="event-open"href="#">Opening Donation Day</a>
-                                                </h4>
-                                                <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                                <div class="event-timewhere">
-                                                    <a class="event-time" href="#"><i class="fa-solid fa-clock"></i> 10.00 - 3.00</a>
-                                                    <a class="event-where"href="#"><i class="fa-solid fa-location-dot"></i></i> California, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> -->
                         </div>
                         <br>
                         
@@ -318,8 +354,11 @@
                             <span class="dot" onclick="currentSlide(1)"></span>
                             <span class="dot" onclick="currentSlide(2)"></span>
                             <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                            <span class="dot" onclick="currentSlide(5)"></span>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </section>

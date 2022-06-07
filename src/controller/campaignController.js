@@ -3,7 +3,27 @@ import { response } from "express";
 import connection from "../configs/connectDB";
 
 let getHomepage = (req, res) => {
-  return res.render("home_campaign.ejs");
+  connection.connect(function (error) {
+    if (error) console.log(error);
+    var sql = "select * from campaign";
+    connection.query(sql, function (error, result) {
+      if (error) {
+        console.log(error);
+      }
+      const startDate = [];
+      const endDate = [];
+
+      for (var i = 0; i < result.length; i++) {
+        startDate[i] = format(result[i].start_date);
+        endDate[i] = format(result[i].end_date);
+      }
+      res.render("./home_campaign", {
+        event: result,
+        start_date: startDate,
+        end_date: endDate,
+      });
+    });
+  });
 };
 
 function format(date) {
@@ -85,8 +105,18 @@ let deleteevent = (req, res) => {
     var sql = "DELETE from campaign where cid=?";
 
     connection.query(sql, [cid], function (error, result) {
-      if (error) console.log(error);
-      res.send("ok");
+      console.log(error);
+      if (error) {
+        res.render("./partials/error_msg", {
+          message: "Error Cannot delete Event ",
+          layout: "./layouts/authentication",
+        });
+      } else {
+        res.render("./partials/success_msg", {
+          message: "Success Event was delete ",
+          layout: "./layouts/authentication",
+        });
+      }
     });
   });
 };

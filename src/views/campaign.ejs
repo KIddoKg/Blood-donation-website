@@ -147,14 +147,14 @@
                   class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
                 >
                   <div class="d-flex justify-content-between">
-                    <a id="btn2" href="#" class="btn btn-sm btn-info mr-4"
-                      >Update user</a
+                    <a id="btn2" href="http://localhost:3000/campaign/event" class="btn btn-sm btn-info mr-4"
+                      >Manager Event</a
                     >
                     <a
                       id="btn4"
                       href="#"
                       class="btn btn-sm btn-default float-right"
-                      >Add blood</a
+                      >Add Event</a
                     >
                   </div>
                 </div>
@@ -205,6 +205,7 @@
                     </div>
                     
                   </div>
+                  <br>
                   <div id="requestmanager"></div>
                 </div>
                 <div class="card-body">
@@ -271,8 +272,8 @@
                               
                               <li> <%- event[i].cname %></li>
                               <li> <%- event[i].open_time %></li>
-                              <li> <%- event[i].startDate %></li>
-                              <li> <%- event[i].end_date %></li>
+                              <li> <%- start_date[i] %></li>
+                              <li> <%- end_date[i] %></li>
                               <li> <%- event[i].address %></a></li>
                               <li><a href="#" onclick="deleteevent(this,'<%- event[i].cid %>')">Delete</a></li>
 
@@ -512,7 +513,8 @@
         
         req.onreadystatechange = function() {
           if(req.readyState == 4 && req.status == 200) {
-            document.getElementById("requestmanager").innerText = req.responseText;
+         
+            document.getElementById("requestmanager").innerHTML = req.responseText;
             obj.parentElement.parentElement.parentElement.remove ();
 
           }

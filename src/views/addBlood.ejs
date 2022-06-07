@@ -533,6 +533,7 @@
       return false;
     }
   </script>
+
   <script>
     function searching() {
       document.querySelectorAll("#tr").forEach(function (ele) {
@@ -558,6 +559,7 @@
       req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
           var obj = JSON.parse(req.responseText);
+
           if (obj.length > 0) {
             for (let i = 0; i < obj.length; i++) {
               div.innerHTML += "<div id='requestup'</div>";

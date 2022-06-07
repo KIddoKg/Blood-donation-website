@@ -1,6 +1,6 @@
 const express = require("express");
 const session = require("express-session");
-const flash = require("connect-flash");
+
 const app = express();
 
 import configViewEngine from "./configs/viewEngine";
@@ -8,22 +8,6 @@ import connection from "./configs/connectDB";
 import bodyParser from "body-parser";
 require("dotenv").config();
 
-//flash
-app.use(flash());
-
-//Var
-// app.use((req, res, next) =>{
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   next()
-// })
-
-// New Express session
-// app.use(session ({
-//   secret: 'secret',
-//   resave: true,
-//   saveUninitialized: true,
-// }));
 app.use(
   session({
     secret: "secret",

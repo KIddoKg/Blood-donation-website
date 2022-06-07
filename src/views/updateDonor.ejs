@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- <link rel="stylesheet" href="./css/style.css" /> -->
-    <link rel="stylesheet" href="../css/person.css" />
-    <link rel="stylesheet" href="../css/styleall.css" />
-    <link rel="stylesheet" href="../css/appointment.css" />
+    <link rel="stylesheet" href="/css/person.css" />
+    <link rel="stylesheet" href="/css/styleall.css" />
+    <link rel="stylesheet" href="/css/appointment.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -76,20 +76,21 @@
       <div
         class="header pb-8 pt-5 pt-lg-8 align-items-center"
         style="
-          min-height: 600px;
-          background-image: url(../img/header-bg.jpg);
+          min-height: 900px;
+          background-image: url(/img/header-bg.jpg);
           background-size: cover;
           background-position: center top;
         "
       >
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
+        <% if(fill.length > 0){ %> <% for(var i = 0;i < fill.length; i++){ %>
         <div class="content">
           <div class="container">
             <div class="row align-items-stretch no-gutters contact-wrap">
               <div class="col-md-12">
                 <div class="form h-100">
-                  <form>
+                  <form onsubmit="return updateinfo()" method="POST">
                     <h6 class="heading-small text-muted mb-4">
                       User information
                     </h6>
@@ -104,8 +105,10 @@
                             >
                             <input
                               type="text"
-                              id="input-username"
+                              id="username"
+                              name="username"
                               class="form-control form-control-alternative"
+                              value="<%- fill[i].dname %>"
                             />
                           </div>
                         </div>
@@ -116,8 +119,10 @@
                             >
                             <input
                               type="text"
-                              id="input-ssn"
+                              id="ssn"
+                              name="ssn"
                               class="form-control form-control-alternative"
+                              value="<%- fill[i].ssn %>"
                             />
                           </div>
                         </div>
@@ -132,8 +137,10 @@
                             >
                             <input
                               type="text"
-                              id="input-last-gender"
+                              id="gender"
+                              name="gender"
                               class="form-control form-control-alternative"
+                              value="<%- fill[i].gender %>"
                             />
                           </div>
                         </div>
@@ -146,9 +153,10 @@
                             >
                             <input
                               type="date"
-                              id="birthday"
+                              id="dob"
                               class="form-control form-control-alternative"
-                              name="birthday"
+                              value="<%- fill[i].dob %>"
+                              name="dob"
                             />
                           </div>
                         </div>
@@ -161,8 +169,10 @@
                             >
                             <input
                               type="text"
-                              id="input-phone"
+                              id="phone"
+                              name="phone"
                               class="form-control form-control-alternative"
+                              value="<%- fill[i].phone %>"
                             />
                           </div>
                         </div>
@@ -173,8 +183,10 @@
                             >
                             <input
                               type="email"
-                              id="input-email"
+                              id="email"
+                              name="email"
                               class="form-control form-control-alternative"
+                              value="<%- fill[i].email %>"
                             />
                           </div>
                         </div>
@@ -187,8 +199,10 @@
                             >
                             <input
                               type="text"
-                              id="input-addr"
+                              id="addr"
+                              name="addr"
                               class="form-control form-control-alternative"
+                              value="<%- fill[i].address %>"
                             />
                           </div>
                         </div>
@@ -205,7 +219,49 @@
             </div>
           </div>
         </div>
+        <% } %> <% }else { %>
+        <h1>Students Data not found!</h1>
+        <% } %>
       </div>
     </div>
   </body>
+  <script>
+    function updateinfo() {
+      var username = document.getElementById("username");
+      var ssn = document.getElementById("ssn");
+      var gender = document.getElementById("gender");
+      var dob = document.getElementById("dob");
+      var phone = document.getElementById("phone");
+      var email = document.getElementById("email");
+      var addr = document.getElementById("addr");
+
+      var req = new XMLHttpRequest();
+
+      req.open("POST", "/information/update");
+      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      req.send(
+        "username=" +
+          username.value +
+          "&ssn=" +
+          ssn.value +
+          "&gender=" +
+          cancelgenderup.value +
+          "&dob=" +
+          dob.value +
+          "&phone=" +
+          phone.value +
+          "&email=" +
+          email.value +
+          "&addr=" +
+          addr.value
+      );
+
+      req.onreadystatechange = function () {
+        if (req.readyState == 4 && req.status == 200) {
+          document.getElementById("requestup").innerHTML = req.responseText;
+        }
+      };
+      return false;
+    }
+  </script>
 </html>
