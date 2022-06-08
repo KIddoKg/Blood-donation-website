@@ -24,6 +24,14 @@ let Signup = (req, res) => {
   return res.render("Signup.ejs", { layout: "./layouts/authentication" });
 };
 
+let getForgot = (req, res) => {
+  return res.render("pass_forgot.ejs", { layout: "./layouts/authentication" });
+};
+
+let getReset = (req, res) => {
+  return res.render("pass_reset.ejs", { layout: "./layouts/authentication" });
+};
+
 let Register = (req, res) => {
   const {
     name,
@@ -233,6 +241,118 @@ let activateHandle = (req, res) => {
   }
 };
 
+//------------ Forgot Password Handle ------------//
+
+let forgotPassword = (req, res) => {
+  const { email } = req.body;
+
+  let errors = [];
+
+  // Check required fields
+  if (!email) {
+    errors.push({ msg: "Please enter an email ID" });
+  }
+
+  if (errors.length > 0) {
+    res.render("pass_forgot.ejs", {
+      layout: "./layouts/authentication",
+      errors,
+      email,
+    });
+  } else {
+    var sql = "SELECT * FROM Donor WHERE email = ?";
+    connection.query(sql, [email], function (err, data) {
+      if (err) throw err;
+      if (!data.length) {
+        errors.push({ msg: "User with email ID does not exist!" });
+        res.render("pass_forgot.ejs", {
+          layout: "./layouts/authentication",
+          errors,
+          email,
+        });
+      } else {
+        const oauth2Client = new OAuth2(
+          process.env.CLIENT_ID, // ClientID
+          process.env.CLIENT_SECRET, // Client Secret
+          process.env.REDIRECT_URI // Redirect URL
+        );
+
+        oauth2Client.setCredentials({
+          refresh_token: process.env.REFRESH_TOKEN,
+        });
+        const accessToken = oauth2Client.getAccessToken();
+
+        const token = jwt.sign(
+          { _id: data._id },
+          process.env.REFRESH_TOKEN_SEREST,
+          { expiresIn: "30m" }
+        );
+
+        const CLIENT_URL = "http://" + req.headers.host;
+        const output = `
+                <h2>Please click on below link to reset your account password</h2>
+                <p>${CLIENT_URL}/forgotPass/${token}</p>
+                <p><b>NOTE: </b> The activation link expires in 30 minutes.</p>
+                `;
+        var data = { resetLink: token };
+        var sqlUpdate = "Update Donor Set resetLink =? where email = ?";
+        connection.query(sqlUpdate, [data, email], function (err, success) {
+          if (err) {
+            errors.push({ msg: "Error resetting password!" });
+            res.render("pass_forgot.ejs", {
+              layout: "./layouts/authentication",
+              errors,
+              email,
+            });
+          } else {
+            const transporter = nodemailer.createTransport({
+              service: "gmail",
+              auth: {
+                type: "OAuth2",
+                user: "aidoctor.se@gmail.com",
+                clientId: process.env.CLIENT_ID,
+                clientSecret: process.env.CLIENT_SECRET,
+                refreshToken: process.env.REFRESH_TOKEN,
+                accessToken: accessToken,
+              },
+            });
+
+            // send mail with defined transport object
+            const mailOptions = {
+              from: '"Auth Admin" <aidoctor.se@gmail.com>', // sender address
+              to: email, // list of receivers
+              subject: "Account Password Reset: NodeJS Auth ✔", // Subject line
+              html: output, // html body
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                console.log(error);
+                req.flash(
+                  "error_msg",
+                  "Something went wrong on our end. Please try again later."
+                );
+                res.redirect("/forgotPass");
+              } else {
+                console.log("Mail sent : %s", info.response);
+                req.flash(
+                  "success_msg",
+                  "Password reset link sent to email ID. Please follow the instructions."
+                );
+                res.redirect("/login");
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+};
+
+// let gotoReset = (req, res) => {
+//   const { token } = req.params;
+// };
+
 let Login = (req, res) => {
   const { email, password } = req.body;
   let errors = [];
@@ -284,7 +404,10 @@ module.exports = {
   Nutripage,
   ShowLogin,
   Signup,
+  getForgot,
+  getReset,
   Register,
   Login,
   activateHandle,
+  forgotPassword,
 };

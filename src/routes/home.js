@@ -10,6 +10,8 @@ const initHomepage = (app) => {
   router.get("/nutri", auth.isAuth, homeController.Nutripage);
   router.get("/login", auth.isAuth, homeController.ShowLogin);
   router.get("/signup", auth.isAuth, homeController.Signup);
+  router.get("/forgotPass", homeController.getForgot);
+  router.get("/resetPass", homeController.getReset);
 
   // Post new donor
   router.post("/signup", homeController.Register);
@@ -19,6 +21,8 @@ const initHomepage = (app) => {
 
   // Post login donor
   router.post("/login", homeController.Login);
+
+  router.post("/forgotPass", homeController.forgotPassword);
 
   return app.use("/", router);
 };
