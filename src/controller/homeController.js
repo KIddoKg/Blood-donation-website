@@ -294,9 +294,10 @@ let forgotPassword = (req, res) => {
                 <p>${CLIENT_URL}/forgotPass/${token}</p>
                 <p><b>NOTE: </b> The activation link expires in 30 minutes.</p>
                 `;
-        var data = { resetLink: token };
+        var link = { resetLink: token };
+        console.log(link);
         var sqlUpdate = "Update Donor Set resetLink =? where email = ?";
-        connection.query(sqlUpdate, [data, email], function (err, success) {
+        connection.query(sqlUpdate, [link, email], function (err, success) {
           if (err) {
             errors.push({ msg: "Error resetting password!" });
             res.render("pass_forgot.ejs", {
