@@ -123,7 +123,7 @@ let Register = (req, res) => {
         `;
 
         const transporter = nodemailer.createTransport({
-          service: "gmail",
+          service: process.env.SERVICE,
           auth: {
             type: "OAuth2",
             user: "aidoctor.se@gmail.com",

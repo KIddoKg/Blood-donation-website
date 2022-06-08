@@ -7,7 +7,7 @@ let router = express.Router();
 const initHomepage = (app) => {
   // Get page
   router.get("/", auth.isAuth, homeController.getHomepage);
-  router.get("/nutri", homeController.Nutripage);
+  router.get("/nutri", auth.isAuth, homeController.Nutripage);
   router.get("/login", auth.isAuth, homeController.ShowLogin);
   router.get("/signup", auth.isAuth, homeController.Signup);
 
