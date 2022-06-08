@@ -14,6 +14,9 @@ const initHomepage = (app) => {
   // Post new donor
   router.post("/signup", homeController.Register);
 
+  // Email Activate Handle
+  router.get("/activate/:token", homeController.activateHandle);
+
   // Post login donor
   router.post("/login", homeController.Login);
 

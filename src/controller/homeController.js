@@ -2,7 +2,10 @@
 import connection from "../configs/connectDB";
 import bcrypt from "bcryptjs";
 import Donor from "../models/donorModels";
-// import passport from "passport";
+import nodemailer from "nodemailer";
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+import jwt from "jsonwebtoken";
 
 let getHomepage = (req, res) => {
   return res.render("home_main.ejs");
@@ -74,12 +77,12 @@ let Register = (req, res) => {
       pass_confirm,
     });
   } else {
-    // Validation passed
     var sql = "SELECT * FROM Donor WHERE email = ?";
-    connection.query(sql, [email], function (err, data, fields) {
+    connection.query(sql, [email], (err, data) => {
       if (err) throw err;
       if (data.length > 0) {
-        errors.push({ msg: "Email already exists" });
+        // User already exists
+        errors.push({ msg: "Email ID already registered" });
         res.render("signup.ejs", {
           layout: "./layouts/authentication.ejs",
           errors,
@@ -94,24 +97,97 @@ let Register = (req, res) => {
           pass_confirm,
         });
       } else {
-        const newDonor = new Donor({
-          name,
-          ssn,
-          gender,
-          birthday,
-          phone,
-          email,
-          address,
-          password,
+        const oauth2Client = new OAuth2(
+          process.env.CLIENT_ID, // ClientID
+          process.env.CLIENT_SECRET, // Client Secret
+          process.env.REDIRECT_URI // Redirect URL
+        );
+
+        oauth2Client.setCredentials({
+          refresh_token: process.env.REFRESH_TOKEN,
         });
-        bcrypt.genSalt(10, (err, salt) =>
-          bcrypt.hash(newDonor.password, salt, (err, hash) => {
-            if (err) throw err;
-            // Set password to hashed
-            newDonor.password = hash;
-            var sql =
-              "INSERT INTO Donor(name, ssn, gender, birthday, phone, email, address, password) Values (?, ?, ?, ?, ?, ?, ?, ?)";
-            var Values = [
+        const accessToken = oauth2Client.getAccessToken();
+
+        const token = jwt.sign(
+          { name, ssn, gender, birthday, phone, email, address, password },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: "30m" }
+        );
+
+        const CLIENT_URL = "http://" + req.headers.host;
+
+        const output = `
+        <h2>Please click on below link to activate your account</h2>
+        <p>${CLIENT_URL}/activate/${token}</p>
+        <p><b>NOTE: </b> The above activation link expires in 30 minutes.</p>
+        `;
+
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            type: "OAuth2",
+            user: "aidoctor.se@gmail.com",
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN,
+            accessToken: accessToken,
+          },
+        });
+
+        // send mail with defined transport object
+        const mailOptions = {
+          from: '"Auth Admin" <aidoctor.se@gmail.com>', // sender address
+          to: email, // list of receivers
+          subject: "Account Verification: NodeJS Auth ✔", // Subject line
+          generateTextFromHTML: true,
+          html: output, // html body
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.log(error);
+            req.flash(
+              "error_msg",
+              "Something went wrong on our end. Please register again."
+            );
+            res.redirect("/login");
+          } else {
+            console.log("Mail sent : %s", info.response);
+            req.flash(
+              "success_msg",
+              "Activation link sent to email ID. Please activate to log in."
+            );
+            res.redirect("/login");
+          }
+        });
+      }
+    });
+  }
+};
+
+// Activate Account Handle
+let activateHandle = (req, res) => {
+  const token = req.params.token;
+  let errors = [];
+  if (token) {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken) => {
+      if (err) {
+        req.flash(
+          "error_msg",
+          "Incorrect or expired link! Please register again."
+        );
+        res.redirect("/signup");
+      } else {
+        const { name, ssn, gender, birthday, phone, email, address, password } =
+          decodedToken;
+        var sql = "SELECT * FROM Donor WHERE email = ?";
+        connection.query(sql, [email], function (err, data) {
+          if (err) throw err;
+          if (data.length > 0) {
+            req.flash("error_msg", "Email ID already registered! Please login");
+            res.redirect("/login");
+          } else {
+            const newDonor = new Donor({
               name,
               ssn,
               gender,
@@ -119,67 +195,43 @@ let Register = (req, res) => {
               phone,
               email,
               address,
-              hash,
-            ];
-            connection.query(sql, Values, function (err, data) {
-              if (err) throw err;
+              password,
             });
-            req.flash("success_msg", "You are now registered and can login");
-            res.redirect("/login");
-          })
-        );
+            bcrypt.genSalt(10, (err, salt) =>
+              bcrypt.hash(newDonor.password, salt, (err, hash) => {
+                if (err) throw err;
+                // Set password to hashed
+                newDonor.password = hash;
+                var sql =
+                  "INSERT INTO Donor(name, ssn, gender, birthday, phone, email, address, password) Values (?, ?, ?, ?, ?, ?, ?, ?)";
+                var Values = [
+                  name,
+                  ssn,
+                  gender,
+                  birthday,
+                  phone,
+                  email,
+                  address,
+                  hash,
+                ];
+                connection.query(sql, Values, function (err, data) {
+                  if (err) throw err;
+                });
+                req.flash(
+                  "success_msg",
+                  "Account activated. You can now login"
+                );
+                res.redirect("/login");
+              })
+            );
+          }
+        });
       }
     });
-    ///
+  } else {
+    console.log("Account activation error!");
   }
 };
-
-// let Login = (req, res) => {
-//   const { email, password } = req.body;
-//   let errors = [];
-//   if (!email || !password) {
-//     errors.push({ msg: "Please fill in all fields" });
-//   }
-//   if (errors.length > 0) {
-//     res.render("login.ejs", {
-//       layout: "./layouts/authentication.ejs",
-//       errors,
-//       email,
-//       password,
-//     });
-//   } else {
-//     var sql = "select * from Donor Where email = ?";
-//     connection.query(sql, [email], (err, data, fields) => {
-//       if (err) throw err;
-//       if (!data.length) {
-//         console.log(data);
-//         errors.push({ msg: "That email is not registered" });
-//         res.render("login.ejs", {
-//           layout: "./layouts/authentication.ejs",
-//           errors,
-//           email,
-//           password,
-//         });
-//       } else {
-//         var hashedPassword = data[0].password;
-//         bcrypt.compare(password, hashedPassword, (error, isMatch) => {
-//           if (error) throw error;
-//           if (isMatch) {
-//             res.redirect("/donor");
-//           } else {
-//             errors.push({ msg: "Password incorrect" });
-//             return res.render("login.ejs", {
-//               layout: "./layouts/authentication.ejs",
-//               errors,
-//               email,
-//               password,
-//             });
-//           }
-//         });
-//       }
-//     });
-//   }
-// };
 
 let Login = (req, res) => {
   const { email, password } = req.body;
@@ -234,4 +286,5 @@ module.exports = {
   Signup,
   Register,
   Login,
+  activateHandle,
 };
