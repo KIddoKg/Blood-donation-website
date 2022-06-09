@@ -70,24 +70,3 @@ const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-
-// app.get('/addBlood', function(req,res) {
-//   return res.render("addBlood.ejs");
-//   });
-
-// app.post('/addBlood', function(req, res) {
-//   var iddonor = req.body.iddonor;
-//   var email = req.body.email;
-//   var mno = req.body.mno;
-//   connection.connect(function(error){
-//        console.log(error);
-//        var sql= "INSERT INTO bloodstocks (did) VALUES ?";
-//        var values = [
-//        [iddonor]
-//        ]
-//        connection.query(sql, [values ], function(error, result){
-//        console.log(error) ;
-//        res.send("Data inserted Success full ");
-//           })
-//   })
-// })

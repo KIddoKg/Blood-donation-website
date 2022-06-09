@@ -9,13 +9,13 @@ const initDonorpage = (app) => {
   router.get("/nutri", auth.loggedin, donorController.Nutripage);
   router.get("/appointment", auth.loggedin, donorController.Appointment);
   router.get("/information", auth.loggedin, donorController.Information);
-  router.get("/updateDonor", auth.loggedin, donorController.UpdateDonor);
-  router.get("/", donorController.HomepageDonor);
+  // router.get("/updateDonor", auth.loggedin, donorController.UpdateDonor);
+  // router.get("/", donorController.HomepageDonor);
   router.get("/showdonate", donorController.Showdonate);
 
-  router.get("/appointment", donorController.Appointment);
+  // router.get("/appointment", donorController.Appointment);
   router.post("/appointment", donorController.Appointmentpost);
-  router.get("/information", donorController.Information);
+  // router.get("/information", donorController.Information);
 
   router.post("/information/update", donorController.Updatepage);
   router.get("/information/update", donorController.Updatepagefill);

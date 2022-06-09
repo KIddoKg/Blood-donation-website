@@ -159,7 +159,7 @@ let Updatepage = (req, res) => {
   var ssn = req.body.ssn;
   var gender = req.body.gender;
 
-  var dob = req.body.dob;
+  var birthday = req.body.dob;
   var phone = req.body.phone;
   var email = req.body.email;
   var addr = req.body.addr;
@@ -241,8 +241,6 @@ let Appointmentpost = (req, res) => {
     var sql =
       "insert into Appointment(did, appoint_date,appoint_time, mesage_note) values (?,?,?,?);";
 
-    var values = [[iddonor, date, txtTime, message]];
-
     connection.query(
       sql,
       [iddonor, date, txtTime, message],
@@ -284,4 +282,5 @@ module.exports = {
   Updateavatar,
   Posteavatar,
   Appointmentpost,
+  Logout,
 };
