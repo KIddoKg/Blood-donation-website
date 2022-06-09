@@ -1,6 +1,6 @@
 // const express = require("express");
 import connection from "../configs/connectDB";
-import bcrypt from "bcryptjs";
+import bcrypt, { hash } from "bcryptjs";
 import Donor from "../models/donorModels";
 import nodemailer from "nodemailer";
 const { google } = require("googleapis");
@@ -28,9 +28,7 @@ let getForgot = (req, res) => {
   return res.render("pass_forgot.ejs", { layout: "./layouts/authentication" });
 };
 
-let getReset = (req, res) => {
-  return res.render("pass_reset.ejs", { layout: "./layouts/authentication" });
-};
+// let getReset =
 
 let Register = (req, res) => {
   const {
@@ -291,68 +289,138 @@ let forgotPassword = (req, res) => {
         const CLIENT_URL = "http://" + req.headers.host;
         const output = `
                 <h2>Please click on below link to reset your account password</h2>
-                <p>${CLIENT_URL}/forgotPass/${token}</p>
+                <p>${CLIENT_URL}/forgot/${token}</p>
                 <p><b>NOTE: </b> The activation link expires in 30 minutes.</p>
                 `;
         var link = { resetLink: token };
         console.log(link);
         var sqlUpdate = "Update Donor Set resetLink =? where email = ?";
-        connection.query(sqlUpdate, [link, email], function (err, success) {
-          if (err) {
-            errors.push({ msg: "Error resetting password!" });
-            res.render("pass_forgot.ejs", {
-              layout: "./layouts/authentication",
-              errors,
-              email,
-            });
-          } else {
-            const transporter = nodemailer.createTransport({
-              service: "gmail",
-              auth: {
-                type: "OAuth2",
-                user: "aidoctor.se@gmail.com",
-                clientId: process.env.CLIENT_ID,
-                clientSecret: process.env.CLIENT_SECRET,
-                refreshToken: process.env.REFRESH_TOKEN,
-                accessToken: accessToken,
-              },
-            });
+        connection.query(
+          sqlUpdate,
+          [link.resetLink, email],
+          function (err, success) {
+            if (err) {
+              errors.push({ msg: "Error resetting password!" });
+              res.render("pass_forgot.ejs", {
+                layout: "./layouts/authentication",
+                errors,
+                email,
+              });
+            } else {
+              const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                  type: "OAuth2",
+                  user: "aidoctor.se@gmail.com",
+                  clientId: process.env.CLIENT_ID,
+                  clientSecret: process.env.CLIENT_SECRET,
+                  refreshToken: process.env.REFRESH_TOKEN,
+                  accessToken: accessToken,
+                },
+              });
 
-            // send mail with defined transport object
-            const mailOptions = {
-              from: '"Auth Admin" <aidoctor.se@gmail.com>', // sender address
-              to: email, // list of receivers
-              subject: "Account Password Reset: NodeJS Auth ✔", // Subject line
-              html: output, // html body
-            };
+              // send mail with defined transport object
+              const mailOptions = {
+                from: '"Auth Admin" <aidoctor.se@gmail.com>', // sender address
+                to: email, // list of receivers
+                subject: "Account Password Reset: NodeJS Auth ✔", // Subject line
+                html: output, // html body
+              };
 
-            transporter.sendMail(mailOptions, (error, info) => {
-              if (error) {
-                console.log(error);
-                req.flash(
-                  "error_msg",
-                  "Something went wrong on our end. Please try again later."
-                );
-                res.redirect("/forgotPass");
-              } else {
-                console.log("Mail sent : %s", info.response);
-                req.flash(
-                  "success_msg",
-                  "Password reset link sent to email ID. Please follow the instructions."
-                );
-                res.redirect("/login");
-              }
-            });
+              transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  console.log(error);
+                  req.flash(
+                    "error_msg",
+                    "Something went wrong on our end. Please try again later."
+                  );
+                  res.redirect("/forgot");
+                } else {
+                  console.log("Mail sent : %s", info.response);
+                  req.flash(
+                    "success_msg",
+                    "Password reset link sent to email ID. Please follow the instructions."
+                  );
+                  res.redirect("/login");
+                }
+              });
+            }
           }
-        });
+        );
       }
     });
   }
 };
 
-// let gotoReset = (req, res) => {
-//   const { token } = req.params;
-// };
+let gotoReset = (req, res) => {
+  const { token } = req.params;
+  if (token) {
+    jwt.verify(token, process.env.REFRESH_TOKEN_SEREST, (err, decodedToken) => {
+      if (err) {
+        req.flash("error_msg", "Incorrect or expired link! Please try again.");
+        res.redirect("/login");
+      } else {
+        const { _id } = decodedToken;
+        var sql = "SELECT * FROM Donor WHERE id = ?";
+        connection.query(sql, [_id], (err, user) => {
+          if (err) {
+            req.flash(
+              "error_msg",
+              "User with email ID does not exist! Please try again."
+            );
+            res.redirect("/login");
+          } else {
+            res.redirect(`resetPass/${_id}`);
+          }
+        });
+      }
+    });
+  } else {
+    console.log("Password reset error!");
+  }
+};
+
+let resetPassword = (req, res) => {
+  const { password, pass_confirm } = req.body;
+  const id = req.params.id;
+
+  //------------ Checking required fields ------------//
+  if (!password || !pass_confirm) {
+    req.flash("error_msg", "Please enter all fields.");
+    res.redirect(`/resetPass/${id}`);
+  }
+
+  //------------ Checking password length ------------//
+  else if (password.length < 6) {
+    req.flash("error_msg", "Password must be at least 6 characters.");
+    res.redirect(`/resetPass/${id}`);
+  }
+
+  //------------ Checking password mismatch ------------//
+  else if (password != pass_confirm) {
+    req.flash("error_msg", "Passwords do not match.");
+    res.redirect(`/resetPass/${id}`);
+  } else {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        if (err) throw err;
+        password = hash;
+        console.log(password);
+
+        var sqlUpdate = "Update Donor Set password =? where id = ?";
+        connection.query(sqlUpdate, [password, id], (err, result) => {
+          if (err) {
+            req.flash("error_msg", "Error resetting password!");
+            res.redirect(`/resetPass/${id}`);
+          } else {
+            req.flash("success_msg", "Password reset successfully!");
+            res.redirect("/login");
+          }
+        });
+      });
+    });
+  }
+};
 
 let Login = (req, res) => {
   const { email, password } = req.body;
@@ -406,9 +474,11 @@ module.exports = {
   ShowLogin,
   Signup,
   getForgot,
-  getReset,
+  // getReset,
   Register,
   Login,
   activateHandle,
   forgotPassword,
+  gotoReset,
+  resetPassword,
 };

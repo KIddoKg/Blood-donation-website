@@ -33,15 +33,15 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-passfg">
-          <form class="login100-form" method="" action="">
+          <form class="login100-form" method="post">
             <span class="login100-form-title p-b-56">Create New Password</span>
-
+            <%- include ("./partials/messages.ejs"); %>
             <!-- Enter password -->
             <div class="wrap-input100">
               <span class="btn-show-pass">
                 <i class="zmdi zmdi-eye"></i>
               </span>
-              <input class="input100" type="password" name="pass" />
+              <input class="input100" type="password" name="password" />
               <span class="focus-input100" data-placeholder="Password"></span>
             </div>
 
@@ -50,7 +50,7 @@
               <span class="btn-show-pass">
                 <i class="zmdi zmdi-eye"></i>
               </span>
-              <input class="input100" type="password" name="pass-confirm" />
+              <input class="input100" type="password" name="pass_confirm" />
               <span
                 class="focus-input100"
                 data-placeholder="Confirm password"
