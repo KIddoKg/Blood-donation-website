@@ -165,8 +165,8 @@ let AddBloodSearch = (req, res) => {
       const dobDate = [];
 
       for (var i = 0; i < result.length; i++) {
-        dobDate[i] = format(result[i].dob);
-        result[i].dob = dobDate[i];
+        dobDate[i] = format(result[i].birthday);
+        result[i].birthday = dobDate[i];
       }
 
       console.log(iddonorsea);

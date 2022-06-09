@@ -41,8 +41,7 @@ function format(date) {
 let event = (req, res) => {
   connection.connect(function (error) {
     if (error) console.log(error);
-    var sql =
-      "select DISTINCT * from campaign c,blooddriveleader where c.bdid = 'B0001';";
+    var sql = "select DISTINCT * from campaign where bdid = 'B0001';";
 
     connection.query(sql, function (error, result) {
       console.log(result);

@@ -74,8 +74,8 @@ let Information = (req, res) => {
       const dobDate = [];
 
       for (var i = 0; i < result.length; i++) {
-        dobDate[i] = format(result[i].dob);
-        result[i].dob = dobDate[i];
+        dobDate[i] = format(result[i].birthday);
+        result[i].birthday = dobDate[i];
       }
 
       console.log(iddonorsea);
@@ -139,8 +139,8 @@ let Updatepagefill = (req, res) => {
       const dobDate = [];
 
       for (var i = 0; i < result.length; i++) {
-        dobDate[i] = format(result[i].dob);
-        result[i].dob = dobDate[i];
+        dobDate[i] = format(result[i].birthday);
+        result[i].birthday = dobDate[i];
       }
 
       console.log(iddonorsea);
@@ -169,11 +169,11 @@ let Updatepage = (req, res) => {
   connection.connect(function (error) {
     console.log(error);
     var sql =
-      "update donor set dname = ?, ssn = ?, gender = ?, dob = ?, phone = ?, email = ?, address = ? where did = ?";
+      "update donor set name = ?, ssn = ?, gender = ?, birthday = ?, phone = ?, email = ?, address = ? where did = ?";
 
     connection.query(
       sql,
-      [username, ssn, gender, dob, phone, email, addr, iddonorup],
+      [username, ssn, gender, birthday, phone, email, addr, iddonorup],
       function (error, result) {
         console.log(result);
         console.log(error);
