@@ -37,6 +37,11 @@ const initHomepage = (app) => {
   router.get("/forgotPass/:token", homeController.gotoReset);
   // Post login donor
   router.post("/login", homeController.Login);
+  router.get("/", homeController.getHomepage);
+
+  router.get("/nutri", homeController.Nutripage);
+  router.get("/login", homeController.Login);
+  router.get("/signup", homeController.Signup);
 
   return app.use("/", router);
 };
