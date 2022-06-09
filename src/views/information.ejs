@@ -88,17 +88,22 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
+              <% if(info.length > 0){ %> <% for(var i = 0;i < info.length; i++){
+                %>
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
                     <img
                       alt="Image placeholder"
-                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      src="/img/Userpic/profile_user<%- info[i].imgid %>.png"
                     />
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm font-weight-bold">John Doe</span>
+                    <span class="mb-0 text-sm font-weight-bold"><%- info[i].dname %></span>
                   </div>
                 </div>
+                <% } %>
+          
+                <% } %>
               </a>
             </li>
           </ul>
@@ -119,17 +124,22 @@
         <span class="mask bg-gradient-default opacity-8"></span>
         <!-- Header container -->
         <div class="">
+          <% if(info.length > 0){ %> <% for(var i = 0;i < info.length; i++){
+            %>
           <div class="container-fluid align-items-center">
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <h1 class="display-2 text-white">Hello John Doe</h1>
-                <p class="text-white mt-0 mb-5">
-                  This is your profile page. You can see the progress you've
-                  made with your work and manage your projects or assigned tasks
-                </p>
+                <h1 class="display-2 text-white">Hello <%- info[i].dname %></h1>
+                <h6 class="text-white mt-0 mb-5">
+                  This is your profile page. You can view your personal information and blood donation history and you can see if your blood has been ordered by the hospital
+                </h6>
               </div>
             </div>
           </div>
+          <% } %>
+          
+            <% } %>
+          
         </div>
         <div class="container">
           <div class="main-body">
@@ -146,34 +156,35 @@
                       class="d-flex flex-column align-items-center text-center"
                     >
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        src="/img/Userpic/profile_user<%- info[i].imgid %>.png"
                         alt="Admin"
                         class="rounded-circle"
                         width="150"
                       />
                       <div class="mt-3">
-                        <h4><%- info[i].dname %></h4>
                         <br />
                         <br />
+                        <h4>&nbsp;&nbsp;&nbsp;<%- info[i].dname %></h4>
                         <br />
-                        <button class="btn btn-primary">Change Avatar</button>
+                      
+                        <a href="/donor/information/avatar" class="btn btn-primary">Change Avatar</a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card mt-3">
-                  <ul class="list-group list-group-flush">
+                <div class="cards mt-3">
+                  <ul class="list-group list-group-flush" >
                     <li
                       class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
                     >
-                      <h6>Total Volume :</h6>
+                      <h6 >Total Volume :</h6><div id="table"><span id="tr"><%- info[i].total_volume %></span></div><a href="" ></a>
                     </li>
                   </ul>
                   <ul class="list-group list-group-flush">
                     <li
                       class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
                     >
-                      <h6>Blood type :<span style="margin-left:5rem"><%- info[i].blood_type %></span></h6>
+                      <h6>Blood type :<span style="margin-left:5rem"></span></h6><div id="table"><span id="tr"><%- info[i].blood_type %></span></div><a href="" ></a>
                     </li>
                   </ul>
                 </div>
@@ -260,7 +271,10 @@
                       <div class="col-sm-6">
                         <a class="btn btn-info" id="showhis" href="#" onclick="return showDonate(this,'<%- info[i].did %>')"
                           >Donate History</a
+
                         >
+                        
+                        
                       </div>
                     </div>
                   </div>
@@ -274,6 +288,7 @@
                       <div class="col col-2">Product Type</div>
                       <div class="col col-3">Date Donate</div>
                       <div class="col col-4">Volume</div>
+                      <div class="col col-5">Status</div>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="return hiden()">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -286,7 +301,154 @@
               
             </div>
             <% } %> <% }else { %>
-              <h1>Students Data not found!</h1>
+              < <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div
+                        class="d-flex flex-column align-items-center text-center"
+                      >
+                        <img
+                          src="/img/Userpic/profile_user.png"
+                          alt="Admin"
+                          class="rounded-circle"
+                          width="150"
+                        />
+                        <div class="mt-3">
+                          <h4>undefined</h4>
+                          <br />
+                          <br />
+                          <br />
+                          <a href="/donor/information/avatar" class="btn btn-primary">Change Avatar</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                      >
+                        <h6>Total Volume :</h6>
+                      </li>
+                    </ul>
+                    <ul class="list-group list-group-flush">
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                      >
+                        <h6>Blood type :<span style="margin-left:5rem">undefined</span></h6>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              
+                <div class="col-md-8">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">undefined</td>
+                         </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Gender</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary"> 
+                          undefined
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Birdays</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">  undefined
+                         </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          undefined
+                         </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary"> undefined</div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">SSN</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          undefined
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Address</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          
+                          undefined
+                          
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Medical Record</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          undefined</div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <a class="btn btn-info"  href="/donor/information/update"
+                            >Edit</a
+                          >
+                        </div>
+                        <div class="col-sm-6">
+                          <a class="btn btn-info" id="showhis" href="#" 
+                            >Donate History</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="container" id="tableshow"style="display: none" >
+                  
+                    <ul class="responsive-table"id="ul">
+                      <li class="table-header" >
+                        <div class="col col-1">ID</div>
+                        <div class="col col-2">Product Type</div>
+                        <div class="col col-3">Date Donate</div>
+                        <div class="col col-4">Volume</div>
+                        
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="return hiden()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </li>
+                     
+               
+                    </ul>
+                  </div>
+                </div>
+                
+              </div>
               <% } %>
             
           </div>
@@ -326,6 +488,7 @@
       };
     }
   </script>
+
   <script>
     function showDonate() {
      
@@ -334,12 +497,9 @@
       document.querySelectorAll("#li").forEach(function (ele) {
         ele.remove();
       });
-     
-      
-    
-
       var ul = document.getElementById("ul");
       var req = new XMLHttpRequest();
+    
 
       req.open("GET", "/donor/showdonate");
       req.send();
@@ -350,12 +510,14 @@
 
           if (obj.length > 0) {
             for (let i = 0; i < obj.length; i++) {
-              ul.innerHTML += " <li class='table-row' id='li'><div class='col col-1' data-label='Job Id'>"+(i+1)+"</div><div class='col col-2' data-label='Customer Name'>"+obj[i]['product_type']+"</div><div class='col col-3' data-label='Amount'>"+obj[i]['input_date']+"</div><div class='col col-4' data-label='Payment Status'>"+obj[i]['volume']+"</div></li>";
+            
+              ul.innerHTML += " <li class='table-row' id='li'><div class='col col-1' data-label='Job Id'>"+(i+1)+"</div><div class='col col-2' data-label='Customer Name'>"+obj[i]['product_type']+"</div><div class='col col-3' data-label='Amount'>"+obj[i]['input_date']+"</div><div class='col col-4' data-label='Payment Status'>"+obj[i]['volume']+"</div><div class='col col-5' data-label='Payment Status'>"+obj[i]['is_ordered']+"</div></li>";
+            
 
             
             }
           } else {
-            div.innerHTML +=
+            ul.innerHTML +=
               "<div id='msg'class='alert alert-warning alert-dismissible ' role='alert'> <strong>You have not donate Yet</strong></div>";
           }
         }

@@ -117,11 +117,9 @@
         <div class="container-fluid align-items-center">
           <div class="row">
             <div class="col-lg-7 col-md-10">
-              <h1 class="display-2 text-white">Hello Jesse</h1>
-              <p class="text-white mt-0 mb-5">
-                This is your profile page. You can see the progress youve made
-                with your work and manage your projects or assigned tasks
-              </p>
+              <h1 class="display-2 text-white">Hello Admin</h1>
+              <br />
+              <br />
             </div>
           </div>
         </div>
@@ -198,14 +196,8 @@
               </div> -->
 
                   <div class="row align-items-center">
-                    <div class="col-8">
-                      <h3 class="mb-0">Donor Profile</h3>
-                    </div>
-                    <div class="col-4 text-left">
-                      <a id="btn1" href="#!" class="btn btn-sm btn-primary"
-                        >Hide</a
-                      >
-                      <!-- <button id="btn1">an</button> -->
+                    <div class="col" style="text-align: center">
+                      <h1 class="mb-0">Donor Profile</h1>
                     </div>
                   </div>
                 </div>
@@ -238,6 +230,7 @@
                             <input
                               type="submit"
                               class="btn btn-sm btn-primary"
+                              value="Find"
                             />
                           </div>
                         </div>
@@ -263,15 +256,8 @@
               <div class="card bg-secondary shadow">
                 <div class="card-header bg-white border-0">
                   <div class="row align-items-center">
-                    <div class="col-8">
-                      <h3 class="mb-0">Blood Stock</h3>
-                    </div>
-
-                    <div class="col-4 text-left">
-                      <a id="btn3" href="#!" class="btn btn-sm btn-primary"
-                        >Hide</a
-                      >
-                      <!-- <button id="btn1">an</button> -->
+                    <div class="col" style="text-align: center">
+                      <h1 class="mb-0">Blood Stock</h1>
                     </div>
                   </div>
                   <br />
@@ -399,15 +385,15 @@
                           </div>
                         </div>
                       </div>
+
+                      <!-- Address -->
+
+                      <input
+                        type="submit"
+                        class="btn btn-sm btn-primary"
+                        value="Submit"
+                      />
                     </div>
-
-                    <!-- Address -->
-
-                    <input
-                      type="submit"
-                      class="btn btn-sm btn-primary"
-                      value="Submit"
-                    />
                   </form>
                 </div>
               </div>
@@ -440,18 +426,11 @@
   </script>
 
   <script language="javascript">
-    document.getElementById("btn1").onclick = function () {
-      document.getElementById("content").style.display = "none";
-    };
-
     document.getElementById("btn2").onclick = function () {
       document.getElementById("content_bank").style.display = "none";
       document.getElementById("content").style.display = "block";
     };
 
-    document.getElementById("btn3").onclick = function () {
-      document.getElementById("content_bank").style.display = "none";
-    };
     document.getElementById("btn4").onclick = function () {
       document.getElementById("content_bank").style.display = "block";
       document.getElementById("content").style.display = "none";

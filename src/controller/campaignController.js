@@ -41,8 +41,11 @@ function format(date) {
 let event = (req, res) => {
   connection.connect(function (error) {
     if (error) console.log(error);
-    var sql = "select * from campaign where bdid = 'B0001'";
+    var sql =
+      "select DISTINCT * from campaign c,blooddriveleader where c.bdid = 'B0001';";
+
     connection.query(sql, function (error, result) {
+      console.log(result);
       if (error) {
         console.log(error);
       }
@@ -61,6 +64,18 @@ let event = (req, res) => {
     });
   });
   // return res.render("campaign.ejs");
+  // connection.connect(function (error) {
+  //   if (error) console.log(error);
+  //   var sql = "select * from blooddriveleader";
+  //   connection.query(sql, function (error, result) {
+  //     if (error) {
+  //       console.log(error);
+  //     }
+  //     res.render("campaign.ejs", {
+  //       event: result,
+  //     });
+  //   });
+  // });
 };
 
 let Addevent = (req, res) => {

@@ -209,6 +209,7 @@ ul.about-details-list li:before {
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
   transition: all 0.3s;
   transition: background-color 1000ms linear;
+  min-height: 32rem;
 }
 
 .skill-box__icon {

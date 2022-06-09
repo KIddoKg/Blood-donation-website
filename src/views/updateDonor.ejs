@@ -26,8 +26,10 @@
 
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <link
-      href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
@@ -88,8 +90,9 @@
         <div class="content">
           <div class="container">
             <div class="row align-items-stretch no-gutters contact-wrap">
-              <div class="col-md-12">
-                <div class="form h-100">
+              <div class="col-md-6">
+                <div class="form h-200">
+                  <div id="requestdonor"></div>
                   <form onsubmit="return updateinfo()" method="POST">
                     <h6 class="heading-small text-muted mb-4">
                       User information
@@ -98,9 +101,7 @@
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group focused">
-                            <label
-                              class="form-control-label"
-                              for="input-username"
+                            <label class="col-form-label" for="input-username"
                               >Username</label
                             >
                             <input
@@ -114,7 +115,7 @@
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <label class="form-control-label" for="input-ssn"
+                            <label class="col-form-label" for="input-ssn"
                               >SSN</label
                             >
                             <input
@@ -131,7 +132,7 @@
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label
-                              class="form-control-label"
+                              class="col-form-label"
                               for="input-first-gender"
                               >Gender</label
                             >
@@ -146,9 +147,7 @@
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group focused">
-                            <label
-                              class="form-control-label"
-                              for="input-last-dob"
+                            <label class="col-form-label" for="input-last-dob"
                               >Birthdays</label
                             >
                             <input
@@ -164,7 +163,7 @@
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group focused">
-                            <label class="form-control-label" for="input-phone"
+                            <label class="col-form-label" for="input-phone"
                               >Phone</label
                             >
                             <input
@@ -178,7 +177,7 @@
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group focused">
-                            <label class="form-control-label" for="input-email"
+                            <label class="col-form-label" for="input-email"
                               >Email</label
                             >
                             <input
@@ -194,7 +193,7 @@
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group focused">
-                            <label class="form-control-label" for="input-addr"
+                            <label class="col-form-label" for="input-addr"
                               >Address</label
                             >
                             <input
@@ -208,13 +207,34 @@
                         </div>
                       </div>
                     </div>
-                    <input
-                      type="submit"
-                      class="btn btn-sm btn-primary"
-                      value="Submit"
-                    />
+                    <br />
+                    <br />
+                    <div class="row">
+                      <div class="col-md-6 form-group">
+                        <input
+                          type="submit"
+                          class="btn btn-sm btn-primary"
+                          value="Submit"
+                        />
+                      </div>
+                      <div class="col-md-6 form-group text-right">
+                        <a
+                          type="button"
+                          href="/donor/information"
+                          class="btn btn-sm btn-primary"
+                          >BACK</a
+                        >
+                      </div>
+                    </div>
+                    <!-- <button id="btn1">an</button> -->
                   </form>
                 </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="contact-info h-100"
+                  style="background-image: url('/img/event_1.jpg')"
+                ></div>
               </div>
             </div>
           </div>
@@ -237,7 +257,7 @@
 
       var req = new XMLHttpRequest();
 
-      req.open("POST", "/information/update");
+      req.open("POST", "/donor/information/update");
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       req.send(
         "username=" +
@@ -245,7 +265,7 @@
           "&ssn=" +
           ssn.value +
           "&gender=" +
-          cancelgenderup.value +
+          gender.value +
           "&dob=" +
           dob.value +
           "&phone=" +
@@ -258,7 +278,7 @@
 
       req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
-          document.getElementById("requestup").innerHTML = req.responseText;
+          document.getElementById("requestdonor").innerHTML = req.responseText;
         }
       };
       return false;
