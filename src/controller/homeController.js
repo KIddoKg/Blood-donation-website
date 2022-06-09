@@ -25,10 +25,17 @@ let Signup = (req, res) => {
 };
 
 let getForgot = (req, res) => {
-  return res.render("pass_forgot.ejs", { layout: "./layouts/authentication" });
+  return res.render("pass_forgot.ejs", {
+    layout: "./layouts/authentication",
+    id: req.params.id,
+  });
 };
 
-// let getReset =
+let getReset = (req, res) => {
+  return res.render("pass_reset.ejs", {
+    layout: "./layouts/authentication",
+  });
+};
 
 let Register = (req, res) => {
   const {
@@ -240,7 +247,6 @@ let activateHandle = (req, res) => {
 };
 
 //------------ Forgot Password Handle ------------//
-
 let forgotPassword = (req, res) => {
   const { email } = req.body;
 
@@ -261,6 +267,7 @@ let forgotPassword = (req, res) => {
     var sql = "SELECT * FROM Donor WHERE email = ?";
     connection.query(sql, [email], function (err, data) {
       if (err) throw err;
+
       if (!data.length) {
         errors.push({ msg: "User with email ID does not exist!" });
         res.render("pass_forgot.ejs", {
@@ -281,15 +288,17 @@ let forgotPassword = (req, res) => {
         const accessToken = oauth2Client.getAccessToken();
 
         const token = jwt.sign(
-          { _id: data._id },
+          { id: data[0].id },
           process.env.REFRESH_TOKEN_SEREST,
-          { expiresIn: "30m" }
+          {
+            expiresIn: "30m",
+          }
         );
 
         const CLIENT_URL = "http://" + req.headers.host;
         const output = `
                 <h2>Please click on below link to reset your account password</h2>
-                <p>${CLIENT_URL}/forgot/${token}</p>
+                <p>${CLIENT_URL}/forgotPass/${token}</p>
                 <p><b>NOTE: </b> The activation link expires in 30 minutes.</p>
                 `;
         var link = { resetLink: token };
@@ -334,7 +343,7 @@ let forgotPassword = (req, res) => {
                     "error_msg",
                     "Something went wrong on our end. Please try again later."
                   );
-                  res.redirect("/forgot");
+                  res.redirect("/forgotPass");
                 } else {
                   console.log("Mail sent : %s", info.response);
                   req.flash(
@@ -354,15 +363,18 @@ let forgotPassword = (req, res) => {
 
 let gotoReset = (req, res) => {
   const { token } = req.params;
+  // const email = req.params.email;
   if (token) {
     jwt.verify(token, process.env.REFRESH_TOKEN_SEREST, (err, decodedToken) => {
       if (err) {
         req.flash("error_msg", "Incorrect or expired link! Please try again.");
         res.redirect("/login");
       } else {
-        const { _id } = decodedToken;
+        console.log(token);
+        const { id } = decodedToken;
+
         var sql = "SELECT * FROM Donor WHERE id = ?";
-        connection.query(sql, [_id], (err, user) => {
+        connection.query(sql, [id], (err, user) => {
           if (err) {
             req.flash(
               "error_msg",
@@ -370,7 +382,7 @@ let gotoReset = (req, res) => {
             );
             res.redirect("/login");
           } else {
-            res.redirect(`resetPass/${_id}`);
+            res.redirect(`/resetPass/${id}`);
           }
         });
       }
@@ -381,7 +393,7 @@ let gotoReset = (req, res) => {
 };
 
 let resetPassword = (req, res) => {
-  const { password, pass_confirm } = req.body;
+  var { password, pass_confirm } = req.body;
   const id = req.params.id;
 
   //------------ Checking required fields ------------//
@@ -405,7 +417,7 @@ let resetPassword = (req, res) => {
       bcrypt.hash(password, salt, (err, hash) => {
         if (err) throw err;
         password = hash;
-        console.log(password);
+        // console.log(password);
 
         var sqlUpdate = "Update Donor Set password =? where id = ?";
         connection.query(sqlUpdate, [password, id], (err, result) => {
@@ -474,7 +486,7 @@ module.exports = {
   ShowLogin,
   Signup,
   getForgot,
-  // getReset,
+  getReset,
   Register,
   Login,
   activateHandle,

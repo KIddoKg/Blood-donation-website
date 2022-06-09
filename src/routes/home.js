@@ -13,15 +13,10 @@ const initHomepage = (app) => {
   router.get("/login", auth.isAuth, homeController.ShowLogin);
 
   //------------ Forgot Password Route ------------// ---
-  router.get("/forgot", homeController.getForgot);
+  router.get("/forgotPass", homeController.getForgot);
 
   //------------ Reset Password Route ------------//
-  router.get(`/resetPass/:id`, (req, res) => {
-    return res.render("pass_reset.ejs", {
-      layout: "./layouts/authentication",
-      id: req.params.id,
-    });
-  });
+  router.get(`/resetPass/:id`, homeController.getReset);
 
   //------------ Register Route ------------// ---
   router.get("/signup", auth.isAuth, homeController.Signup);
@@ -33,13 +28,13 @@ const initHomepage = (app) => {
   router.get("/activate/:token", homeController.activateHandle);
 
   //------------ Forgot Password Handle ------------// ---
-  router.post("/forgot", homeController.forgotPassword);
+  router.post("/forgotPass", homeController.forgotPassword);
 
   //------------ Reset Password Handle ------------//
   router.post(`/resetPass/:id`, homeController.resetPassword);
 
   //------------ Reset Password Handle ------------// ---
-  router.get("/forgot/:token", homeController.gotoReset);
+  router.get("/forgotPass/:token", homeController.gotoReset);
   // Post login donor
   router.post("/login", homeController.Login);
 
