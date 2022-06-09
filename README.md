@@ -3,8 +3,8 @@ A mini project for subject Web, about blood donation database and blood supply m
 
 Contributors to complete and update the product:
 - Trần Thị Huỳnh Như	-	ITITIU19174 
-- Đỗ Hoàng Nhung	 -	ITITIU19176
-- Nguyễn Quốc Bảo		-	ITITIU19081 
+- Đỗ Hoàng Nhung	    -	ITITIU19176
+- Nguyễn Quốc Bảo		  -	ITITIU19081 
 
 
 Contact via Facebook:
