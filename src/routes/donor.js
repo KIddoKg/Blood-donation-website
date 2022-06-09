@@ -6,7 +6,7 @@ let router = express.Router();
 
 const initDonorpage = (app) => {
   router.get("/", auth.loggedin, donorController.HomepageDonor);
-  router.get("/nutri", donorController.Nutripage);
+  router.get("/nutri", auth.loggedin, donorController.Nutripage);
   router.get("/appointment", auth.loggedin, donorController.Appointment);
   router.get("/information", auth.loggedin, donorController.Information);
   router.get("/updateDonor", auth.loggedin, donorController.UpdateDonor);

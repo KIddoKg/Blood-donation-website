@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Log In</title>
+    <title>Reset Password</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--===============================================================================================-->
@@ -18,33 +18,26 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!--=============================================================================================== -->
+    <!--===============================================================================================-->
     <link
       rel="stylesheet"
       type="text/css"
       href="/src/public/iconic/css/material-design-iconic-font.min.css"
     />
     <!--===============================================================================================-->
-    <!-- <link rel="stylesheet" type="text/css" href="/src/public/css/util.css" /> -->
-    <link rel="stylesheet" href="../css/util.css" />
-    <link rel="stylesheet" href="../css/intro.css" />
+    <link rel="stylesheet" type="text/css" href="../css/util.css" />
+    <link rel="stylesheet" type="text/css" href="../css/intro.css" />
     <!--===============================================================================================-->
   </head>
   <body>
     <div class="limiter">
       <div class="container-login100">
-        <div class="wrap-login100">
+        <div class="wrap-passfg">
           <form class="login100-form" method="post">
-            <span class="login100-form-title p-b-56">Log In</span>
+            <span class="login100-form-title p-b-56">Create New Password</span>
             <%- include ("./partials/messages.ejs"); %>
-            <!-- Email -->
+            <!-- Enter password -->
             <div class="wrap-input100">
-              <input class="input100" type="email" name="email" />
-              <span class="focus-input100" data-placeholder="Email"></span>
-            </div>
-
-            <!-- Password -->
-            <div class="wrap-input100 pass">
               <span class="btn-show-pass">
                 <i class="zmdi zmdi-eye"></i>
               </span>
@@ -52,23 +45,25 @@
               <span class="focus-input100" data-placeholder="Password"></span>
             </div>
 
-            <!-- Forgot password -->
-            <div class="text-right mb-4">
-              <a href="/forgotPass">Forgot Password?</a>
+            <!-- Confirm password -->
+            <div class="wrap-input100 pass">
+              <span class="btn-show-pass">
+                <i class="zmdi zmdi-eye"></i>
+              </span>
+              <input class="input100" type="password" name="pass_confirm" />
+              <span
+                class="focus-input100"
+                data-placeholder="Confirm password"
+              ></span>
             </div>
 
-            <!-- Login button-->
-            <div class="container-login100-form-btn m-b-50">
-              <div class="wrap-login100-form-btn mb-5">
+            <div class="container-login100-form-btn m-t-18 m-b-50">
+              <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
-                <button type="submit" class="login100-form-btn">Log In</button>
+                <button type="submit" class="login100-form-btn">
+                  Reset Password
+                </button>
               </div>
-            </div>
-
-            <!-- Sign up -->
-            <div class="text-center mt-5">
-              <span class="txt1">Don't have an account?</span>
-              <a class="txt2" href="./signup">Sign Up</a>
             </div>
           </form>
         </div>
