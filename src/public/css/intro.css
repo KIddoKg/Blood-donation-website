@@ -172,6 +172,12 @@ iframe {
   line-height: 1.5;
 }
 
+.returnlogin {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
 
