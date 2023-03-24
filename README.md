@@ -8,7 +8,7 @@ Contributors to complete and update the product:
 
 
 Contact via Facebook:
-- Trần Thị Huỳnh Như	-	https://www.facebook.com/profile.php?id=100010707667900
-- Đỗ Hoàng Nhung	 -	https://www.facebook.com/hoa.xuongrong.3705157
-- Nguyễn Quốc Bảo		-	 https://www.facebook.com/Kiddo.HiuHiu/
+- Trần Thị Huỳnh Như	
+- Đỗ Hoàng Nhung	
+- Nguyễn Quốc Bảo		
 
